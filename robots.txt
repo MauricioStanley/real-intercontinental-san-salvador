@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /reservar.html
+Disallow: /privacidad.html
+
+Sitemap: https://www.example.com/sitemap.xml

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ofertas y Paquetes · Real InterContinental San Salvador</title>
+<meta name="description" content="Ofertas y paquetes con reserva directa en el Real InterContinental San Salvador: Tarifa Club, Cena Alojamiento y Desayuno, Escapada de Placer y Family Getaway.">
+<meta name="theme-color" content="#123528">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600&family=Jost:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css">
+<noscript><style>.reveal,.reveal-img{opacity:1!important;transform:none!important;clip-path:none!important}</style></noscript>
+</head>
+<body>
+<a class="skip" href="#main">Saltar al contenido</a>
+
+<header class="site-header site-header--inner">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="Real InterContinental San Salvador — inicio">
+      <span class="brand__mark" aria-hidden="true"><svg viewBox="0 0 30 42"><defs><linearGradient id="hm" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e7cd93"/><stop offset=".55" stop-color="#c2993f"/><stop offset="1" stop-color="#9a7226"/></linearGradient></defs><path d="M15 1c5 6 9 10 9 20s-4 14-9 20C10 35 6 31 6 21S10 7 15 1Z" fill="url(#hm)"/><path d="M11 15h8v2h-2.5v8H19v2h-8v-2h2.5v-8H11Z" fill="#fff"/></svg></span>
+      <span class="brand__word"><b>InterContinental</b><span>San Salvador</span></span>
+    </a>
+    <button class="burger" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav"><span></span><span></span><span></span></button>
+    <nav class="nav" id="nav">
+      <a href="habitaciones.html">Habitaciones</a>
+      <a href="gastronomia.html">Gastronomía</a>
+      <a href="spa-bienestar.html">Bienestar</a>
+      <a href="eventos.html">Eventos</a>
+      <a href="ofertas.html" aria-current="page">Ofertas</a>
+      <a href="galeria.html">Galería</a>
+      <a href="ubicacion.html">Ubicación</a>
+      <a class="btn btn--ghost-light nav__cta" href="reservar.html">Reservar</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+<section class="pagehero">
+  <div class="pagehero__media"><img src="assets/img/hotel/club-lounge.jpg" alt="Club InterContinental Lounge con salas de estar y buffet"></div>
+  <div class="wrap">
+    <p class="overline" style="color:var(--gold-soft)">Reserva directa</p>
+    <h1 class="h-lg">Ofertas y Paquetes</h1>
+    <div class="crumbs"><a href="index.html">Inicio</a> / <span>Ofertas</span></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="overline">Mejor tarifa garantizada</p>
+      <h2 class="h-md">Siempre conviene reservar aquí</h2>
+      <p class="lede">Si encuentras una tarifa pública más baja para las mismas fechas y condiciones, la igualamos y aplicamos un descuento adicional. Precios en USD por noche, sin impuestos.</p>
+    </div>
+    <div class="stack" id="offers-list" style="gap:26px"></div>
+  </div>
+</section>
+
+<section class="cta-strip">
+  <div class="wrap--narrow">
+    <p class="overline" style="color:var(--gold-soft)">¿Buscas algo a la medida?</p>
+    <h2 class="h-lg">Grupos, larga estancia y corporativo</h2>
+    <p>Escríbenos para tarifas de grupo, convenios de empresa y estancias prolongadas.</p>
+    <a class="btn btn--gold" href="ubicacion.html">Contactar al hotel</a>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer" data-footer></footer>
+<div class="mobile-book"><a class="btn btn--gold" href="reservar.html">Reservar ahora</a></div>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/partials.js"></script>
+<script>
+(function () {
+  var D = window.IC_DATA, wrap = document.getElementById("offers-list");
+  wrap.innerHTML = D.offers.map(function (o, i) {
+    var perks = o.perks.map(function (p) { return "<li>" + p + "</li>"; }).join("");
+    return '<article class="offer reveal">' +
+      (i % 2 ? '' : '<div class="offer__media"><img src="' + o.img + '" alt="' + o.name + '" loading="lazy"></div>') +
+      '<div class="offer__body">' +
+        '<h3>' + o.name + '</h3>' +
+        '<p style="color:var(--ink-soft)">' + o.pitch + '</p>' +
+        '<ul class="offer__perks">' + perks + '</ul>' +
+        '<div class="offer__foot"><span class="offer__price">$' + o.from + ' <small>' + o.unit + '</small></span>' +
+        '<a class="btn btn--sm btn--gold" href="reservar.html">Reservar</a></div>' +
+      '</div>' +
+      (i % 2 ? '<div class="offer__media"><img src="' + o.img + '" alt="' + o.name + '" loading="lazy"></div>' : '') +
+    '</article>';
+  }).join("");
+})();
+</script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

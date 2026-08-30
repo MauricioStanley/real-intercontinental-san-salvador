@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Detalle de habitación · Real InterContinental San Salvador</title>
+<meta name="description" content="Detalle de habitación del Real InterContinental San Salvador: dimensiones, camas, vistas, amenidades y reserva directa.">
+<meta name="theme-color" content="#123528">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600&family=Jost:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css">
+<noscript><style>.reveal,.reveal-img{opacity:1!important;transform:none!important;clip-path:none!important}</style></noscript>
+</head>
+<body>
+<a class="skip" href="#main">Saltar al contenido</a>
+
+<header class="site-header site-header--inner">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="Real InterContinental San Salvador — inicio">
+      <span class="brand__mark" aria-hidden="true"><svg viewBox="0 0 30 42"><defs><linearGradient id="hm" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e7cd93"/><stop offset=".55" stop-color="#c2993f"/><stop offset="1" stop-color="#9a7226"/></linearGradient></defs><path d="M15 1c5 6 9 10 9 20s-4 14-9 20C10 35 6 31 6 21S10 7 15 1Z" fill="url(#hm)"/><path d="M11 15h8v2h-2.5v8H19v2h-8v-2h2.5v-8H11Z" fill="#fff"/></svg></span>
+      <span class="brand__word"><b>InterContinental</b><span>San Salvador</span></span>
+    </a>
+    <button class="burger" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav"><span></span><span></span><span></span></button>
+    <nav class="nav" id="nav">
+      <a href="habitaciones.html" aria-current="page">Habitaciones</a>
+      <a href="gastronomia.html">Gastronomía</a>
+      <a href="spa-bienestar.html">Bienestar</a>
+      <a href="eventos.html">Eventos</a>
+      <a href="ofertas.html">Ofertas</a>
+      <a href="galeria.html">Galería</a>
+      <a href="ubicacion.html">Ubicación</a>
+      <a class="btn btn--ghost-light nav__cta" href="reservar.html">Reservar</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main" class="section" style="padding-top:calc(70px + 40px)">
+  <div class="wrap" id="room-detail"><!-- render JS --></div>
+</main>
+
+<footer class="site-footer" data-footer></footer>
+<div class="mobile-book"><a class="btn btn--gold" href="reservar.html">Reservar ahora</a></div>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/partials.js"></script>
+<script>
+(function () {
+  var D = window.IC_DATA;
+  var id = new URLSearchParams(location.search).get("id") || "classic";
+  var r = D.rooms.filter(function (x) { return x.id === id; })[0] || D.rooms[0];
+  document.title = r.name + " · Real InterContinental San Salvador";
+
+  var gal = r.gallery.map(function (src, i) {
+    return '<button data-lightbox="' + src + '" data-caption="' + r.name + '" aria-label="Ampliar imagen"><img src="' + src + '" alt="' + r.name + ' — imagen ' + (i + 1) + '" loading="lazy"></button>';
+  }).join("");
+
+  var amen = r.amenities.map(function (a) { return "<li>— " + a + "</li>"; }).join("");
+
+  document.getElementById("room-detail").innerHTML =
+    '<div class="crumbs" style="color:var(--ink-soft);margin-bottom:26px"><a href="index.html">Inicio</a> / <a href="habitaciones.html">Habitaciones</a> / <span style="color:var(--gold)">' + r.name + '</span></div>' +
+    '<div class="split" style="align-items:start">' +
+      '<div>' +
+        '<div class="gallery-grid" style="grid-template-columns:1fr 1fr">' + gal + '</div>' +
+      '</div>' +
+      '<div class="split__body">' +
+        '<p class="overline">Habitación</p>' +
+        '<h1 class="h-lg" style="margin:12px 0 8px">' + r.name + '</h1>' +
+        '<p class="serif-quote" style="font-size:1.5rem;margin-bottom:18px">desde <span style="color:var(--gold)">$' + r.from + '</span> <span style="font-family:var(--font-body);font-size:.9rem;font-style:normal;color:var(--ink-soft)">/ noche · sin impuestos</span></p>' +
+        '<p style="color:var(--ink-soft)">' + r.desc + '</p>' +
+        '<div class="stats" style="margin:26px 0">' +
+          '<div class="stat"><b style="font-size:1.4rem">' + r.size + '</b><span>Superficie</span></div>' +
+          '<div class="stat"><b style="font-size:1.4rem">' + r.bed + '</b><span>Camas</span></div>' +
+          '<div class="stat"><b style="font-size:1.4rem">' + r.occupancy + '</b><span>Capacidad</span></div>' +
+        '</div>' +
+        '<h3 class="h-sm" style="margin-bottom:10px">Incluye</h3>' +
+        '<ul class="stack" style="gap:6px;color:var(--ink-soft);margin-bottom:28px">' + amen + '</ul>' +
+        '<div style="display:flex;gap:14px;flex-wrap:wrap">' +
+          '<a class="btn btn--gold" href="reservar.html">Reservar esta habitación</a>' +
+          '<a class="btn btn--ghost" href="habitaciones.html">Ver otras habitaciones</a>' +
+        '</div>' +
+      '</div>' +
+    '</div>';
+})();
+</script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
