@@ -3,3 +3,6 @@ Thumbs.db
 *.log
 .vscode/
 node_modules/
+
+.claude/settings.json
+.claude/settings.local.json
