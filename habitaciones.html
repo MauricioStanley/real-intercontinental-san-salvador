@@ -9,7 +9,7 @@
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..520&family=Inter:wght@400..700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/styles.css">
 <noscript><style>.reveal,.reveal-img{opacity:1!important;transform:none!important;clip-path:none!important}</style></noscript>
 </head>
@@ -41,7 +41,6 @@
 <section class="pagehero">
   <div class="pagehero__media"><img src="assets/img/hotel/suite-living.jpg" alt="Sala de una suite InterContinental"></div>
   <div class="wrap">
-    <p class="overline" style="color:var(--gold-soft)">Alojamiento</p>
     <h1 class="h-lg">Habitaciones y Suites</h1>
     <div class="crumbs"><a href="index.html">Inicio</a> / <span>Habitaciones</span></div>
   </div>
@@ -50,7 +49,6 @@
 <section class="section">
   <div class="wrap">
     <div class="section-head">
-      <p class="overline">226 llaves</p>
       <h2 class="h-md">Descanso que se nota al día siguiente</h2>
       <p class="lede">Todas nuestras habitaciones incluyen ropa de cama de diseño, almohadas de pluma, ventanas insonorizadas, clima individual, minibar, cafetera, caja fuerte e internet de velocidad para streaming. Precios en USD por noche, sin impuestos, sujetos a disponibilidad.</p>
     </div>
@@ -74,7 +72,6 @@
 
 <section class="cta-strip">
   <div class="wrap--narrow">
-    <p class="overline" style="color:var(--gold-soft)">Reserva directa</p>
     <h2 class="h-lg">¿Lista tu fecha?</h2>
     <p>Consulta disponibilidad y tarifas en tiempo real. Mejor precio garantizado en el sitio oficial.</p>
     <a class="btn btn--gold" href="reservar.html">Comprobar disponibilidad</a>
@@ -94,9 +91,10 @@
   if (!D || !g) return;
   g.innerHTML = D.rooms.map(function (r) {
     return '<article class="card reveal">' +
-      '<div class="card__media"><img src="' + r.img + '" alt="' + r.name + '" loading="lazy"><span class="price">desde <b>$' + r.from + '</b></span></div>' +
+      '<div class="card__media"><img src="' + r.img + '" alt="' + r.name + '" loading="lazy"></div>' +
       '<div class="card__body">' +
         '<h3>' + r.name + '</h3>' +
+        '<p class="card__price">Desde $' + r.from + ' <small>/ noche</small></p>' +
         '<div class="card__meta"><span>' + r.size + '</span><span>' + r.bed + '</span><span>' + r.occupancy + '</span><span>' + r.view + '</span></div>' +
         '<p>' + r.short + '</p>' +
         '<a class="link-arrow" href="habitacion.html?id=' + r.id + '">Ver detalle y reservar <svg width="16" height="10" viewBox="0 0 16 10" fill="none"><path d="M1 5h13M10 1l4 4-4 4" stroke="currentColor" stroke-width="1.4"/></svg></a>' +

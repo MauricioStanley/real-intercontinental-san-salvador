@@ -212,7 +212,7 @@
         '<div class="tick">✓</div>' +
         '<h2 class="h-md">Reserva confirmada</h2>' +
         '<p class="lede" style="margin:10px 0 18px">Hemos enviado los detalles a ' + (g.email || "tu correo") + '.</p>' +
-        '<p class="overline">Código de reserva</p>' +
+        '<p style="font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);font-weight:600;margin-bottom:4px">Código de reserva</p>' +
         '<p class="code">' + code + '</p>' +
         '<div style="max-width:420px;margin:26px auto 0;text-align:left">' +
           row("Huésped", (g.first || "") + " " + (g.last || "")) +

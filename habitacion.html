@@ -9,7 +9,7 @@
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..520&family=Inter:wght@400..700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/styles.css">
 <noscript><style>.reveal,.reveal-img{opacity:1!important;transform:none!important;clip-path:none!important}</style></noscript>
 </head>
@@ -56,26 +56,25 @@
     return '<button data-lightbox="' + src + '" data-caption="' + r.name + '" aria-label="Ampliar imagen"><img src="' + src + '" alt="' + r.name + ' — imagen ' + (i + 1) + '" loading="lazy"></button>';
   }).join("");
 
-  var amen = r.amenities.map(function (a) { return "<li>— " + a + "</li>"; }).join("");
+  var amen = r.amenities.map(function (a) { return "<li>" + a + "</li>"; }).join("");
 
   document.getElementById("room-detail").innerHTML =
-    '<div class="crumbs" style="color:var(--ink-soft);margin-bottom:26px"><a href="index.html">Inicio</a> / <a href="habitaciones.html">Habitaciones</a> / <span style="color:var(--gold)">' + r.name + '</span></div>' +
+    '<div class="crumbs" style="color:var(--ink-2);margin-bottom:26px"><a href="index.html">Inicio</a> / <a href="habitaciones.html">Habitaciones</a> / <span style="color:var(--gold)">' + r.name + '</span></div>' +
     '<div class="split" style="align-items:start">' +
       '<div>' +
         '<div class="gallery-grid" style="grid-template-columns:1fr 1fr">' + gal + '</div>' +
       '</div>' +
       '<div class="split__body">' +
-        '<p class="overline">Habitación</p>' +
         '<h1 class="h-lg" style="margin:12px 0 8px">' + r.name + '</h1>' +
-        '<p class="serif-quote" style="font-size:1.5rem;margin-bottom:18px">desde <span style="color:var(--gold)">$' + r.from + '</span> <span style="font-family:var(--font-body);font-size:.9rem;font-style:normal;color:var(--ink-soft)">/ noche · sin impuestos</span></p>' +
-        '<p style="color:var(--ink-soft)">' + r.desc + '</p>' +
+        '<p class="serif-quote" style="font-size:1.5rem;margin-bottom:18px">desde <span style="color:var(--gold)">$' + r.from + '</span> <span style="font-family:var(--font-body);font-size:.9rem;font-style:normal;color:var(--ink-2)">/ noche · sin impuestos</span></p>' +
+        '<p style="color:var(--ink-2)">' + r.desc + '</p>' +
         '<div class="stats" style="margin:26px 0">' +
           '<div class="stat"><b style="font-size:1.4rem">' + r.size + '</b><span>Superficie</span></div>' +
           '<div class="stat"><b style="font-size:1.4rem">' + r.bed + '</b><span>Camas</span></div>' +
           '<div class="stat"><b style="font-size:1.4rem">' + r.occupancy + '</b><span>Capacidad</span></div>' +
         '</div>' +
         '<h3 class="h-sm" style="margin-bottom:10px">Incluye</h3>' +
-        '<ul class="stack" style="gap:6px;color:var(--ink-soft);margin-bottom:28px">' + amen + '</ul>' +
+        '<ul class="stack" style="gap:6px;color:var(--ink-2);margin-bottom:28px">' + amen + '</ul>' +
         '<div style="display:flex;gap:14px;flex-wrap:wrap">' +
           '<a class="btn btn--gold" href="reservar.html">Reservar esta habitación</a>' +
           '<a class="btn btn--ghost" href="habitaciones.html">Ver otras habitaciones</a>' +
