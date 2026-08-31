@@ -294,6 +294,32 @@ ul.stack > li::before {
 .site-header--inner .nav > a[aria-current="page"] { color: var(--gold); }
 .nav__cta { margin-left: 4px; }
 
+/* Selector de idioma */
+.lang {
+  display: inline-flex; align-items: center; gap: 2px;
+  margin-left: 6px;
+  color: #fff;
+}
+.site-header.is-solid .lang,
+.site-header--inner .lang { color: var(--ink); }
+.lang button {
+  font-family: var(--font-sans-alt);
+  font-size: .76rem; font-weight: 600; letter-spacing: .04em;
+  color: currentColor; opacity: .55;
+  padding: 6px 7px; line-height: 1;
+  transition: opacity .25s var(--ease), color .25s var(--ease);
+}
+.lang button + button { margin-left: 2px; }
+.lang button + button::before {
+  content: ""; position: absolute; left: -1px; top: 50%; transform: translateY(-50%);
+  width: 1px; height: 11px; background: currentColor; opacity: .4;
+}
+.lang button { position: relative; }
+.lang button:hover { opacity: 1; }
+.lang button[aria-current="true"] { opacity: 1; color: var(--gold-on-dark); }
+.site-header.is-solid .lang button[aria-current="true"],
+.site-header--inner .lang button[aria-current="true"] { color: var(--gold); }
+
 .burger { display: none; width: 28px; height: 18px; position: relative; z-index: 120; }
 .burger span {
   position: absolute; left: 0; width: 100%; height: 2px; background: #fff;
@@ -319,6 +345,9 @@ body.nav-open .burger span:nth-child(3) { transform: translateY(-8px) rotate(-45
   body.nav-open .nav { transform: translateX(0); }
   .nav > a { color: #fff !important; font-size: 1.05rem; }
   .nav__cta { margin-top: 8px; }
+  .lang { margin: 4px 0 0; color: #fff; }
+  .lang button { font-size: .85rem; opacity: .7; }
+  .lang button[aria-current="true"] { color: var(--gold-on-dark); }
 }
 
 .skip {
@@ -814,7 +843,9 @@ body.nav-open .burger span:nth-child(3) { transform: translateY(-8px) rotate(-45
 /* ---------- Animación: una sola entrada, sutil ---------- */
 .reveal { opacity: 0; transform: translateY(20px); transition: opacity .7s var(--ease-out), transform .7s var(--ease-out); transition-delay: calc(var(--i, 0) * 80ms); }
 .reveal.is-visible { opacity: 1; transform: none; }
-.reveal-img { clip-path: inset(0 0 100% 0); transition: clip-path .9s var(--ease-out); }
-.reveal-img.is-visible { clip-path: inset(0 0 0 0); }
+/* Las imágenes se muestran de inmediato. Antes usaban un recorte
+   animado que dependía de IntersectionObserver y, si no disparaba,
+   dejaba el hueco vacío. Ya no se animan: siempre visibles. */
+.reveal-img, .reveal-img.is-visible { opacity: 1; clip-path: none; }
 
 .count { font-variant-numeric: tabular-nums; }

@@ -81,7 +81,8 @@
 
   function dateHuman(s) {
     try {
-      return new Date(s + "T00:00:00").toLocaleDateString("es-ES", { weekday: "short", day: "numeric", month: "short" });
+      var loc = { en: "en-US", pt: "pt-BR" }[window.IC_LANG] || "es-ES";
+      return new Date(s + "T00:00:00").toLocaleDateString(loc, { weekday: "short", day: "numeric", month: "short" });
     } catch (e) { return s; }
   }
 
@@ -91,7 +92,8 @@
     rows += row("Entrada", dateHuman(state.checkin));
     rows += row("Salida", dateHuman(state.checkout));
     rows += row("Noches", nights());
-    rows += row("Huéspedes", state.adults + " adultos" + (state.children ? " · " + state.children + " niños" : ""));
+    var W = { es: ["adultos", "niños"], en: ["adults", "children"], pt: ["adultos", "crianças"] }[window.IC_LANG] || ["adultos", "niños"];
+    rows += row("Huéspedes", state.adults + " " + W[0] + (state.children ? " · " + state.children + " " + W[1] : ""));
     rows += row("Habitaciones", state.rooms);
     if (r) rows += row(r.name, rt ? rt.name : "");
     if (r && rt) rows += row(money(roomNightly()) + " × " + nights() + " noche(s) × " + state.rooms, money(roomNightly() * nights() * state.rooms));
