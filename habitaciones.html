@@ -5,8 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Habitaciones y Suites · Real InterContinental San Salvador</title>
 <meta name="description" content="226 habitaciones y suites en el Real InterContinental San Salvador: Clásica, Superior, Familiar, Junior Suite, Club InterContinental y Suite InterContinental. Precios de referencia y reserva directa.">
-<meta name="theme-color" content="#123528">
+<meta name="theme-color" content="#164539">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/img/icons/icon-192.png">
+<link rel="manifest" href="manifest.json">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
@@ -30,6 +32,7 @@
       <a href="eventos.html">Eventos</a>
       <a href="ofertas.html">Ofertas</a>
       <a href="galeria.html">Galería</a>
+      <a href="experiencias.html">Experiencias</a>
       <a href="ubicacion.html">Ubicación</a>
       <a class="btn btn--ghost-light nav__cta" href="reservar.html">Reservar</a>
     </nav>
@@ -55,6 +58,13 @@
 
     <div class="grid grid--2" id="rooms-grid">
       <!-- Renderizado desde assets/js/data.js -->
+    </div>
+
+    <div class="center" style="margin-top:44px">
+      <button class="btn btn--ghost" type="button" data-compare-toggle data-show="Comparar todas las habitaciones" data-hide="Ocultar comparación">Comparar todas las habitaciones</button>
+    </div>
+    <div id="compare-panel" style="margin-top:32px" hidden>
+      <div class="compare-wrap"><table class="compare" id="compare-table"></table></div>
     </div>
   </div>
 </section>
@@ -101,6 +111,27 @@
       '</div>' +
     '</article>';
   }).join("");
+
+  /* --- Tabla comparativa --- */
+  var ct = document.getElementById("compare-table");
+  if (ct) {
+    var rows = [
+      ["Desde (USD / noche)", function (r) { return '<span class="from">$' + r.from + "</span>"; }],
+      ["Superficie", function (r) { return r.size; }],
+      ["Camas", function (r) { return r.bed; }],
+      ["Capacidad", function (r) { return r.occupancy; }],
+      ["Vista", function (r) { return r.view; }],
+      ["Sala de estar", function (r) { return /sala|comedor|sofá/i.test(r.bed + r.short + r.desc) ? '<span class="yes">Sí</span>' : '<span class="no">—</span>'; }],
+      ["Acceso al Club Lounge", function (r) { return /club|lounge/i.test(r.id + r.name) ? '<span class="yes">Sí</span>' : '<span class="no">—</span>'; }]
+    ];
+    var head = "<thead><tr><th></th>" + D.rooms.map(function (r) { return "<th>" + r.name + "</th>"; }).join("") + "</tr></thead>";
+    var body = "<tbody>" + rows.map(function (row) {
+      return "<tr><th>" + row[0] + "</th>" + D.rooms.map(function (r) { return "<td>" + row[1](r) + "</td>"; }).join("") + "</tr>";
+    }).join("") + "<tr><th></th>" + D.rooms.map(function (r) {
+      return '<td><a class="link-arrow" href="habitacion.html?id=' + r.id + '">Ver</a></td>';
+    }).join("") + "</tr></tbody>";
+    ct.innerHTML = head + body;
+  }
 })();
 </script>
 <script src="assets/js/main.js"></script>

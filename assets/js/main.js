@@ -202,6 +202,29 @@
     });
   }
 
+  /* ---------- FAQ (acordeón) ---------- */
+  $$(".faq__item").forEach(function (item) {
+    var q = item.querySelector(".faq__q");
+    if (!q) return;
+    q.setAttribute("aria-expanded", "false");
+    q.addEventListener("click", function () {
+      var open = item.classList.toggle("open");
+      q.setAttribute("aria-expanded", open ? "true" : "false");
+    });
+  });
+
+  /* ---------- Comparador de habitaciones (mostrar/ocultar) ---------- */
+  var cmpBtn = $("[data-compare-toggle]");
+  var cmp = $("#compare-panel");
+  if (cmpBtn && cmp) {
+    cmp.hidden = true;
+    cmpBtn.addEventListener("click", function () {
+      cmp.hidden = !cmp.hidden;
+      cmpBtn.textContent = cmp.hidden ? cmpBtn.getAttribute("data-show") : cmpBtn.getAttribute("data-hide");
+      if (!cmp.hidden) cmp.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  }
+
   /* ---------- Año en el footer ---------- */
   $$("[data-year]").forEach(function (el) { el.textContent = new Date().getFullYear(); });
 
@@ -217,4 +240,11 @@
       form.reset();
     });
   });
+
+  /* ---------- Service worker (carga instantánea / offline) ---------- */
+  if ("serviceWorker" in navigator && location.protocol.indexOf("http") === 0) {
+    window.addEventListener("load", function () {
+      navigator.serviceWorker.register("sw.js").catch(function () {});
+    });
+  }
 })();

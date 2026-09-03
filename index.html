@@ -5,8 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Real InterContinental San Salvador · Hotel de lujo junto a Metrocentro</title>
 <meta name="description" content="Hotel de lujo InterContinental en San Salvador, junto a Metrocentro Mall y el centro histórico. 226 habitaciones, tres restaurantes, spa, piscina y el Club InterContinental. Reserva con la mejor tarifa garantizada.">
-<meta name="theme-color" content="#123528">
+<meta name="theme-color" content="#164539">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/img/icons/icon-192.png">
+<link rel="manifest" href="manifest.json">
 <meta property="og:title" content="Real InterContinental San Salvador">
 <meta property="og:description" content="Lujo sofisticado en el corazón de San Salvador. Reserva directo con la mejor tarifa garantizada.">
 <meta property="og:type" content="website">
@@ -32,7 +34,30 @@
   "geo": { "@type": "GeoCoordinates", "latitude": 13.707409, "longitude": -89.213126 },
   "telephone": "+503-2211-3333",
   "image": "assets/img/hotel/hero-exterior.jpg",
-  "priceRange": "$$$"
+  "priceRange": "$$$",
+  "amenityFeature": [
+    { "@type": "LocationFeatureSpecification", "name": "Piscina al aire libre", "value": true },
+    { "@type": "LocationFeatureSpecification", "name": "Spa", "value": true },
+    { "@type": "LocationFeatureSpecification", "name": "Fitness center 24 h", "value": true },
+    { "@type": "LocationFeatureSpecification", "name": "Wi-Fi gratis", "value": true },
+    { "@type": "LocationFeatureSpecification", "name": "Estacionamiento", "value": true }
+  ],
+  "checkinTime": "15:00",
+  "checkoutTime": "12:00"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "¿A qué hora es el check-in y el check-out?", "acceptedAnswer": { "@type": "Answer", "text": "Check-in a partir de las 3:00 p. m. y check-out hasta las 12:00 m. d. El check-out tardío está disponible para huéspedes del Club InterContinental y, según ocupación, para reservas directas." } },
+    { "@type": "Question", "name": "¿El hotel tiene estacionamiento?", "acceptedAnswer": { "@type": "Answer", "text": "Sí. Estacionamiento en el hotel por 5 USD por vehículo y día, con conexión peatonal a Metrocentro." } },
+    { "@type": "Question", "name": "¿Puedo llevar a mi mascota?", "acceptedAnswer": { "@type": "Answer", "text": "Aceptamos mascotas de hasta 15 kg en habitaciones designadas, con un cargo de limpieza. Avísanos al reservar." } },
+    { "@type": "Question", "name": "¿Ofrecen traslado desde el aeropuerto?", "acceptedAnswer": { "@type": "Answer", "text": "Sí. Traslado privado en sedán desde el Aeropuerto Internacional Monseñor Óscar Arnulfo Romero (SAL), a unos 45 minutos." } },
+    { "@type": "Question", "name": "¿Cuál es el horario de la piscina?", "acceptedAnswer": { "@type": "Answer", "text": "La piscina al aire libre abre todos los días de 6:00 a 21:00. El Azul Pool Bar sirve de 10:00 a 19:00." } },
+    { "@type": "Question", "name": "¿Los niños tienen tarifa especial?", "acceptedAnswer": { "@type": "Answer", "text": "Hasta dos menores se hospedan sin costo en la habitación de sus padres. Con el paquete Family Getaway, el desayuno es gratis para menores de 12 años." } }
+  ]
 }
 </script>
 <noscript><style>.reveal,.reveal-img{opacity:1!important;transform:none!important;clip-path:none!important}</style></noscript>
@@ -59,6 +84,7 @@
       <a href="eventos.html">Eventos</a>
       <a href="ofertas.html">Ofertas</a>
       <a href="galeria.html">Galería</a>
+      <a href="experiencias.html">Experiencias</a>
       <a href="ubicacion.html">Ubicación</a>
       <a class="btn btn--ghost-light nav__cta" href="reservar.html">Reservar</a>
     </nav>
@@ -311,11 +337,23 @@
   </div>
 </section>
 
+<!-- ================= CONFIANZA ================= -->
+<section class="section section--tight">
+  <div class="wrap">
+    <div class="trustbar reveal">
+      <div class="trust"><b>4.6</b><span class="stars">★★★★★</span><span>Google · 1,622</span></div>
+      <div class="trust"><b>4.5</b><span class="stars">★★★★★</span><span>Tripadvisor</span></div>
+      <div class="trust"><b>8.7</b><span class="stars">★★★★★</span><span>Booking.com</span></div>
+      <div class="trust"><b>2021</b><span class="stars">✦</span><span>IHG Torch Bearer</span></div>
+    </div>
+  </div>
+</section>
+
 <!-- ================= RESEÑAS ================= -->
 <section class="section section--emerald">
   <div class="wrap">
     <div class="section-head center">
-      <h2 class="h-lg">4.6 / 5 &nbsp;·&nbsp; 1,622 opiniones</h2>
+      <h2 class="h-lg">Lo que dicen nuestros huéspedes</h2>
       <p class="lede">Distinguido con el Torch Bearer Award 2021 de IHG, la máxima distinción de servicio de la compañía.</p>
     </div>
     <div class="reviews">
@@ -338,6 +376,57 @@
   </div>
 </section>
 
+<!-- ================= RESERVA DIRECTA ================= -->
+<section class="section section--sand">
+  <div class="wrap">
+    <div class="section-head center">
+      <h2 class="h-lg">Reserva en el sitio oficial y obtén más</h2>
+      <p class="lede">Ventajas exclusivas que solo tienes al reservar directo con el hotel, no en agencias de viaje.</p>
+    </div>
+    <div class="perks-grid reveal">
+      <div class="perk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2 4 6v6c0 5 3.4 8.5 8 10 4.6-1.5 8-5 8-10V6l-8-4z"/><path d="m9 12 2 2 4-4"/></svg><div><b>Mejor precio garantizado</b><span>Si encuentras una tarifa pública más baja, la igualamos y descontamos un 10&nbsp;% más.</span></div></div>
+      <div class="perk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M8 2v4M16 2v4M3 10h18M9 15l2 2 4-4"/></svg><div><b>Cancelación flexible</b><span>La mayoría de tarifas se cancelan sin cargo hasta 48&nbsp;h antes de la llegada.</span></div></div>
+      <div class="perk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 7h18M3 7l2-4h14l2 4M5 7v13a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V7"/></svg><div><b>Sin cargos ni comisiones</b><span>Pagas la tarifa del hotel, sin recargos de intermediarios.</span></div></div>
+      <div class="perk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="m12 3 2.5 5 5.5.8-4 3.9.9 5.5L12 21l-4.9 2.7.9-5.5-4-3.9L9.5 8 12 3z"/></svg><div><b>Mejora de categoría</b><span>Prioridad de <em>upgrade</em> según disponibilidad al momento del check-in.</span></div></div>
+      <div class="perk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 3h12l-1 9a5 5 0 0 1-10 0L6 3zM4 21h16M9 21v-3M15 21v-3"/></svg><div><b>Bebida de bienvenida</b><span>Cortesía en Azul Pool Bar o NAU al llegar, reservando directo.</span></div></div>
+      <div class="perk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><div><b>Check-out tardío</b><span>Hasta las 14:00 sin costo cuando reservas en este sitio (según ocupación).</span></div></div>
+    </div>
+    <div class="center" style="margin-top:44px"><a class="btn btn--gold" href="reservar.html">Comprobar disponibilidad</a></div>
+  </div>
+</section>
+
+<!-- ================= EXPERIENCIAS ================= -->
+<section class="section">
+  <div class="wrap split">
+    <div class="split__media reveal-img">
+      <img src="assets/img/hotel/destination-plaza.jpg" alt="Centro histórico de San Salvador con la catedral y el volcán">
+      <span class="tag">A tu alcance</span>
+    </div>
+    <div class="split__body reveal">
+      <h2 class="h-lg" style="margin-bottom:18px">El Salvador empieza en la puerta del hotel</h2>
+      <p class="lede">Surf City y las playas de El Tunco y El Zonte, el volcán de Santa Ana y el lago de Coatepeque, la Ruta de las Flores y la Ruta del Café, el centro histórico y Suchitoto. Nuestra conserjería organiza traslados y guías para cada plan.</p>
+      <div style="margin-top:26px"><a class="link-arrow" href="experiencias.html">Descubre El Salvador <svg width="16" height="10" viewBox="0 0 16 10" fill="none"><path d="M1 5h13M10 1l4 4-4 4" stroke="currentColor" stroke-width="1.4"/></svg></a></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section class="section section--sand">
+  <div class="wrap">
+    <div class="section-head center">
+      <h2 class="h-lg">Preguntas frecuentes</h2>
+    </div>
+    <div class="faq">
+      <div class="faq__item"><button class="faq__q" type="button">¿A qué hora es el check-in y el check-out?<i></i></button><div class="faq__a"><p>Check-in a partir de las 3:00 p.&nbsp;m. y check-out hasta las 12:00 m.&nbsp;d. El check-in exprés y el check-out tardío están disponibles para huéspedes del Club InterContinental y, según ocupación, para reservas directas.</p></div></div>
+      <div class="faq__item"><button class="faq__q" type="button">¿El hotel tiene estacionamiento?<i></i></button><div class="faq__a"><p>Sí. Estacionamiento en el hotel por 5&nbsp;USD por vehículo y día, con acceso directo desde Boulevard de los Héroes y conexión peatonal a Metrocentro.</p></div></div>
+      <div class="faq__item"><button class="faq__q" type="button">¿Puedo llevar a mi mascota?<i></i></button><div class="faq__a"><p>Aceptamos mascotas de hasta 15&nbsp;kg en habitaciones designadas, con un cargo de limpieza. Avísanos al reservar para confirmar disponibilidad.</p></div></div>
+      <div class="faq__item"><button class="faq__q" type="button">¿Ofrecen traslado desde el aeropuerto?<i></i></button><div class="faq__a"><p>Sí. Traslado privado en sedán desde el Aeropuerto Internacional Monseñor Óscar Arnulfo Romero (SAL), a unos 45&nbsp;minutos. Se agrega como extra en el motor de reservas o se solicita en recepción.</p></div></div>
+      <div class="faq__item"><button class="faq__q" type="button">¿Cuál es el horario de la piscina?<i></i></button><div class="faq__a"><p>La piscina al aire libre abre todos los días de 6:00 a 21:00. El Azul Pool Bar sirve de 10:00 a 19:00.</p></div></div>
+      <div class="faq__item"><button class="faq__q" type="button">¿Los niños tienen tarifa especial?<i></i></button><div class="faq__a"><p>Hasta dos menores se hospedan sin costo en la habitación de sus padres. Con el paquete Family Getaway, el desayuno es gratis para menores de 12&nbsp;años.</p></div></div>
+    </div>
+  </div>
+</section>
+
 <!-- ================= CTA ================= -->
 <section class="cta-strip">
   <div class="wrap--narrow">
@@ -350,66 +439,13 @@
 </main>
 
 <!-- ================= FOOTER ================= -->
-<footer class="site-footer">
-  <div class="wrap">
-    <div class="footer-grid">
-      <div>
-        <a class="brand" href="index.html">
-          <span class="brand__mark" aria-hidden="true"><svg viewBox="0 0 30 42"><path d="M15 1c5 6 9 10 9 20s-4 14-9 20C10 35 6 31 6 21S10 7 15 1Z" fill="#c2993f"/><path d="M11 15h8v2h-2.5v8H19v2h-8v-2h2.5v-8H11Z" fill="#0d2820"/></svg></span>
-          <span class="brand__word"><b>InterContinental</b><span>San Salvador</span></span>
-        </a>
-        <p class="muted" style="margin-top:16px;max-width:34ch">Boulevard de los Héroes y Calle Sisimiles, San Salvador 0544, El Salvador.</p>
-        <div class="footer-social">
-          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 22v-8h3l1-4h-4V7c0-1 .3-2 2-2h2V1.5C22 1.4 20.6 1 19 1c-3 0-5 2-5 5v4h-3v4h3v8z"/></svg></a>
-          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
-          <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5A2.5 2.5 0 1 0 5 8.5a2.5 2.5 0 0 0 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05C20.4 8.65 22 10.8 22 14.2V21h-4v-6c0-1.43-.03-3.28-2-3.28-2 0-2.3 1.56-2.3 3.17V21H9z"/></svg></a>
-        </div>
-      </div>
-      <div>
-        <h4>Hotel</h4>
-        <ul>
-          <li><a href="habitaciones.html">Habitaciones</a></li>
-          <li><a href="gastronomia.html">Gastronomía</a></li>
-          <li><a href="spa-bienestar.html">Spa &amp; Bienestar</a></li>
-          <li><a href="eventos.html">Eventos y bodas</a></li>
-          <li><a href="galeria.html">Galería</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Reservas</h4>
-        <ul>
-          <li><a href="reservar.html">Reservar en línea</a></li>
-          <li><a href="ofertas.html">Ofertas y paquetes</a></li>
-          <li>Reservas: <a href="tel:21367606">213 67606</a></li>
-          <li>Recepción: <a href="tel:+50322113333">+503 2211 3333</a></li>
-          <li><a href="mailto:inter.sal@r-hr.com">inter.sal@r-hr.com</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Boletín</h4>
-        <p class="muted" style="margin-bottom:14px">Ofertas exclusivas y novedades del hotel, un correo al mes.</p>
-        <form data-demo class="stack" style="gap:10px">
-          <input class="field" style="width:100%;border:1px solid rgba(255,255,255,.2);background:transparent;padding:12px 14px;color:#fff" type="email" required placeholder="Tu correo electrónico" aria-label="Tu correo electrónico">
-          <button class="btn btn--gold btn--sm btn--block" type="submit">Suscribirme</button>
-          <small data-demo-msg hidden style="color:var(--gold-soft)"></small>
-        </form>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>© <span data-year>2026</span> Real InterContinental San Salvador. Operado bajo licencia de IHG Hotels &amp; Resorts.</p>
-      <nav>
-        <a href="privacidad.html">Privacidad</a>
-        <a href="privacidad.html">Términos</a>
-        <a href="ubicacion.html">Contacto</a>
-      </nav>
-    </div>
-  </div>
-</footer>
+<footer class="site-footer" data-footer></footer>
 
 <!-- barra de reserva móvil -->
 <div class="mobile-book"><a class="btn btn--gold" href="reservar.html">Reservar ahora</a></div>
 
 <script src="assets/js/data.js"></script>
+<script src="assets/js/partials.js"></script>
 <script src="assets/js/main.js"></script>
 <script src="assets/js/i18n.js"></script>
 </body>

@@ -1,0 +1,21 @@
+{
+  "name": "Real InterContinental San Salvador",
+  "short_name": "InterContinental SV",
+  "description": "Hotel de lujo en San Salvador. Habitaciones, gastronomía, spa, eventos y reserva directa.",
+  "lang": "es",
+  "start_url": "index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#e7dfce",
+  "theme_color": "#164539",
+  "icons": [
+    { "src": "assets/img/icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "assets/img/icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "assets/img/icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Reservar", "url": "reservar.html" },
+    { "name": "Ofertas", "url": "ofertas.html" },
+    { "name": "Ubicación", "url": "ubicacion.html" }
+  ]
+}

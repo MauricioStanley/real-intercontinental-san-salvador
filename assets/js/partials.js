@@ -1,8 +1,98 @@
-/* Footer compartido — se inyecta en [data-footer] */
+/* ============================================================
+   Elementos compartidos en todas las páginas:
+   footer, barra de anuncio, barra fija de reserva, WhatsApp.
+   ============================================================ */
 (function () {
+  "use strict";
+  var WA = "50322113333"; // recepción, formato internacional para wa.me
+  var WA_MSG = encodeURIComponent(
+    "Hola, quisiera información sobre una reserva en el Real InterContinental San Salvador."
+  );
+
+  /* ---------- Barra de anuncio (descartable) ---------- */
+  if (!document.querySelector(".announce")) {
+    var a = document.createElement("div");
+    a.className = "announce";
+    a.innerHTML =
+      '<span>Reserva directa &middot; mejor precio garantizado, sin cargos y cancelación flexible.</span> ' +
+      '<a href="ofertas.html">Ver ventajas</a>' +
+      '<button class="announce__x" type="button" aria-label="Cerrar aviso">&times;</button>';
+    document.body.insertBefore(a, document.body.firstChild);
+    a.querySelector(".announce__x").addEventListener("click", function () {
+      document.body.classList.add("announce-off");
+      try { localStorage.setItem("ic_announce", "off"); } catch (e) {}
+    });
+    try { if (localStorage.getItem("ic_announce") === "off") document.body.classList.add("announce-off"); } catch (e) {}
+  }
+
+  /* ---------- Barra fija de reserva (aparece al hacer scroll) ---------- */
+  if (!document.querySelector(".stickybar")) {
+    var fmt = function (d) { return d.toISOString().slice(0, 10); };
+    var t1 = new Date(); t1.setDate(t1.getDate() + 1);
+    var t2 = new Date(); t2.setDate(t2.getDate() + 2);
+    var sb = document.createElement("div");
+    sb.className = "stickybar";
+    sb.innerHTML =
+      '<div class="stickybar__in">' +
+        '<span class="stickybar__brand">InterContinental San&nbsp;Salvador</span>' +
+        '<form id="stickyform">' +
+          '<div class="fld"><label for="sb-in">Entrada</label><input type="date" id="sb-in" value="' + fmt(t1) + '" min="' + fmt(new Date()) + '"></div>' +
+          '<div class="fld"><label for="sb-out">Salida</label><input type="date" id="sb-out" value="' + fmt(t2) + '"></div>' +
+          '<div class="fld fld--guests"><label for="sb-g">Huéspedes</label>' +
+            '<select id="sb-g">' +
+              '<option value="2|0|1">2 adultos · 1 habitación</option>' +
+              '<option value="1|0|1">1 adulto · 1 habitación</option>' +
+              '<option value="2|1|1">2 adultos · 1 niño</option>' +
+              '<option value="2|2|1">2 adultos · 2 niños</option>' +
+              '<option value="4|0|2">4 adultos · 2 habitaciones</option>' +
+            '</select></div>' +
+          '<button class="btn btn--gold" type="submit">Reservar</button>' +
+        '</form>' +
+      '</div>';
+    document.body.insertBefore(sb, document.body.firstChild);
+
+    var sin = sb.querySelector("#sb-in"), sout = sb.querySelector("#sb-out");
+    sin.addEventListener("change", function () {
+      var n = new Date(sin.value); n.setDate(n.getDate() + 1);
+      if (new Date(sout.value) <= new Date(sin.value)) sout.value = fmt(n);
+      sout.min = fmt(n);
+    });
+    sb.querySelector("#stickyform").addEventListener("submit", function (e) {
+      e.preventDefault();
+      var g = sb.querySelector("#sb-g").value.split("|");
+      var p = new URLSearchParams({
+        checkin: sin.value, checkout: sout.value,
+        adults: g[0], children: g[1], rooms: g[2]
+      });
+      window.location.href = "reservar.html?" + p.toString();
+    });
+
+    var hero = document.querySelector(".hero, .pagehero");
+    var onScroll = function () {
+      var th = hero ? Math.max(260, hero.offsetHeight * 0.65) : 300;
+      sb.classList.toggle("show", window.scrollY > th);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+  }
+
+  /* ---------- Botón flotante de WhatsApp ---------- */
+  if (!document.querySelector(".wa-fab")) {
+    var w = document.createElement("a");
+    w.className = "wa-fab";
+    w.href = "https://wa.me/" + WA + "?text=" + WA_MSG;
+    w.target = "_blank";
+    w.rel = "noopener";
+    w.setAttribute("aria-label", "Escribir por WhatsApp");
+    w.setAttribute("data-label", "Reserva por WhatsApp");
+    w.innerHTML =
+      '<svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 3C9 3 3.5 8.5 3.5 15.5c0 2.4.7 4.7 1.9 6.7L3 29l7-1.8c1.9 1 4 1.6 6 1.6 7 0 12.5-5.5 12.5-12.5S23 3 16 3zm0 22.8c-1.8 0-3.6-.5-5.1-1.4l-.4-.2-4.2 1.1 1.1-4.1-.3-.4a10 10 0 0 1-1.6-5.6C5.6 9.7 10.3 5 16 5s10.4 4.7 10.4 10.5S21.7 25.8 16 25.8zm5.7-7.8c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.2s-.8 1-1 1.2c-.2.2-.4.2-.7.1-.3-.2-1.3-.5-2.5-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.7l.5-.6c.2-.2.2-.3.4-.6.1-.2 0-.4 0-.6l-1-2.3c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.3 3.1c.2.2 2.2 3.3 5.2 4.6.7.3 1.3.5 1.8.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.3-.7.3-1.3.2-1.4-.1-.2-.3-.2-.6-.4z"/></svg>';
+    document.body.appendChild(w);
+  }
+
+  /* ---------- Footer ---------- */
   var el = document.querySelector("[data-footer]");
-  if (!el) return;
-  el.innerHTML = '' +
+  if (el) el.innerHTML = '' +
   '<div class="wrap">' +
     '<div class="footer-grid">' +
       '<div>' +
@@ -14,7 +104,7 @@
         '<div class="footer-social">' +
           '<a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 22v-8h3l1-4h-4V7c0-1 .3-2 2-2h2V1.5C22 1.4 20.6 1 19 1c-3 0-5 2-5 5v4h-3v4h3v8z"/></svg></a>' +
           '<a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>' +
-          '<a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5A2.5 2.5 0 1 0 5 8.5a2.5 2.5 0 0 0 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05C20.4 8.65 22 10.8 22 14.2V21h-4v-6c0-1.43-.03-3.28-2-3.28-2 0-2.3 1.56-2.3 3.17V21H9z"/></svg></a>' +
+          '<a href="https://wa.me/' + WA + '" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.5 15.3L2 22l4.9-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.9.8.8-2.8-.2-.3A8 8 0 1 1 12 20zm4.4-6c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1a6.5 6.5 0 0 1-3.2-2.8c-.2-.4.2-.4.6-1.2.1-.2 0-.3 0-.5l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5c-.2 0-.4.1-.7.3-.9.9-.9 2.2 0 3.5a9 9 0 0 0 4.5 4c1.9.7 1.9.5 2.3.4.4 0 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1z"/></svg></a>' +
         '</div>' +
       '</div>' +
       '<div>' +
@@ -24,6 +114,7 @@
           '<li><a href="gastronomia.html">Gastronomía</a></li>' +
           '<li><a href="spa-bienestar.html">Spa &amp; Bienestar</a></li>' +
           '<li><a href="eventos.html">Eventos y bodas</a></li>' +
+          '<li><a href="experiencias.html">Descubre El Salvador</a></li>' +
           '<li><a href="galeria.html">Galería</a></li>' +
         '</ul>' +
       '</div>' +
@@ -34,12 +125,13 @@
           '<li><a href="ofertas.html">Ofertas y paquetes</a></li>' +
           '<li>Reservas: <a href="tel:21367606">213 67606</a></li>' +
           '<li>Recepción: <a href="tel:+50322113333">+503 2211 3333</a></li>' +
+          '<li>WhatsApp: <a href="https://wa.me/' + WA + '">+503 2211 3333</a></li>' +
           '<li><a href="mailto:inter.sal@r-hr.com">inter.sal@r-hr.com</a></li>' +
         '</ul>' +
       '</div>' +
       '<div>' +
         '<h4>Boletín</h4>' +
-        '<p class="muted" style="margin-bottom:14px">Ofertas exclusivas y novedades del hotel, un correo al mes.</p>' +
+        '<p class="muted" style="margin-bottom:14px">Suscríbete y recibe un <strong>10&nbsp;% de descuento</strong> en tu primera reserva directa.</p>' +
         '<form data-demo class="stack" style="gap:10px">' +
           '<input style="width:100%;border:1px solid rgba(255,255,255,.2);background:transparent;padding:12px 14px;color:#fff" type="email" required placeholder="Tu correo electrónico" aria-label="Tu correo electrónico">' +
           '<button class="btn btn--gold btn--sm btn--block" type="submit">Suscribirme</button>' +

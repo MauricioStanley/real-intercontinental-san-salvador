@@ -112,6 +112,48 @@
   }
   function row(k, v) { return '<div class="summary__row"><span>' + k + "</span><span>" + v + "</span></div>"; }
 
+  /* ---- Calendario de tarifas indicativas ---- */
+  var baseFrom = Math.min.apply(null, D.rooms.map(function (r) { return r.from; }));
+  function dayPrice(d) {
+    var f = 1, dow = d.getDay(), m = d.getMonth();
+    if (dow === 5 || dow === 6) f *= 1.18;       // fin de semana
+    else if (dow === 0) f *= 0.92;               // domingo
+    if ([11, 0, 2, 3, 6, 10].indexOf(m) > -1) f *= 1.15;  // temporada alta
+    else if ([5, 8, 9].indexOf(m) > -1) f *= 0.9;         // temporada baja
+    return Math.round(baseFrom * f);
+  }
+  function locale() { return { en: "en-US", pt: "pt-BR" }[window.IC_LANG] || "es-ES"; }
+  function rateCal() {
+    if (!state.calMonth) {
+      var ci = new Date(state.checkin + "T00:00:00");
+      state.calMonth = new Date(ci.getFullYear(), ci.getMonth(), 1);
+    }
+    var y = state.calMonth.getFullYear(), mo = state.calMonth.getMonth();
+    var first = new Date(y, mo, 1), start = (first.getDay() + 6) % 7; // lunes = 0
+    var days = new Date(y, mo + 1, 0).getDate();
+    var today = new Date(); today.setHours(0, 0, 0, 0);
+    var dows = { es: ["L", "M", "M", "J", "V", "S", "D"], en: ["M", "T", "W", "T", "F", "S", "S"], pt: ["S", "T", "Q", "Q", "S", "S", "D"] }[window.IC_LANG] || ["L", "M", "M", "J", "V", "S", "D"];
+    var cells = dows.map(function (d) { return '<div class="ratecal__dow">' + d + "</div>"; }).join("");
+    for (var i = 0; i < start; i++) cells += "<div></div>";
+    for (var day = 1; day <= days; day++) {
+      var dt = new Date(y, mo, day), iso = fmt(dt), past = dt < today;
+      var sel = iso === state.checkin ? " sel" : "";
+      cells += '<button type="button" class="ratecal__day' + sel + '" data-cal-day="' + iso + '"' + (past ? " disabled" : "") +
+        '>' + day + (past ? "" : '<small>$' + dayPrice(dt) + "</small>") + "</button>";
+    }
+    var title = state.calMonth.toLocaleDateString(locale(), { month: "long", year: "numeric" });
+    title = title.charAt(0).toUpperCase() + title.slice(1);
+    return '<div class="ratecal">' +
+      '<div class="ratecal__head">' +
+        '<button type="button" class="ratecal__nav" data-cal-nav="-1" aria-label="Mes anterior">&#8249;</button>' +
+        "<b>" + title + "</b>" +
+        '<button type="button" class="ratecal__nav" data-cal-nav="1" aria-label="Mes siguiente">&#8250;</button>' +
+      "</div>" +
+      '<div class="ratecal__grid">' + cells + "</div>" +
+      '<p class="ratecal__legend">Precio indicativo por noche, desde. Toca un día para fijar la entrada.</p>' +
+    "</div>";
+  }
+
   /* ---- Paso 1: fechas y huéspedes ---- */
   function panel1() {
     return '' +
@@ -124,6 +166,7 @@
         field("Habitaciones", numSelect("w-rooms", 1, 4, state.rooms)) +
         field("Código promocional", '<input type="text" id="w-promo" value="' + state.promo + '" placeholder="Opcional">') +
       '</div>' +
+      '<div style="margin-top:26px">' + rateCal() + '</div>' +
       '<p class="form-note" style="margin-top:18px">Mejor tarifa garantizada al reservar directo. Precios en USD; los impuestos se calculan en el paso final.</p>' +
       '<div class="wizard-nav"><span></span><button class="btn btn--gold" data-next>Elegir habitación</button></div>' +
       '</div>';
@@ -247,6 +290,7 @@
   /* ============================================================
      Ciclo de render
      ============================================================ */
+  var lastStep = 0;
   function render() {
     $("#wizard-steps").innerHTML = stepper();
     var body;
@@ -261,7 +305,10 @@
     if (sumMount) sumMount.innerHTML = state.step === 5 ? "" : summary();
 
     bind();
-    window.scrollTo({ top: $(".site-header").offsetHeight, behavior: "smooth" });
+    if (state.step !== lastStep) {
+      window.scrollTo({ top: ($(".site-header").offsetHeight || 70), behavior: "smooth" });
+      lastStep = state.step;
+    }
   }
 
   function bind() {
@@ -273,6 +320,23 @@
       ["w-checkin", "w-checkout", "w-adults", "w-children", "w-rooms", "w-promo"].forEach(function (id) {
         var el = $("#" + id);
         if (el) el.addEventListener("change", readStep1);
+      });
+      $$("[data-cal-nav]").forEach(function (b) {
+        b.addEventListener("click", function () {
+          var d = +b.getAttribute("data-cal-nav");
+          state.calMonth = new Date(state.calMonth.getFullYear(), state.calMonth.getMonth() + d, 1);
+          render();
+        });
+      });
+      $$("[data-cal-day]").forEach(function (b) {
+        b.addEventListener("click", function () {
+          var keepNights = Math.max(1, nights());
+          state.checkin = b.getAttribute("data-cal-day");
+          var out = new Date(state.checkin + "T00:00:00");
+          out.setDate(out.getDate() + keepNights);
+          state.checkout = fmt(out);
+          render();
+        });
       });
     }
     if (state.step === 2) {

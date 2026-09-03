@@ -648,6 +648,182 @@
     "Nueva reserva": "Nova reserva"
   };
 
+  /* --- Añadidos (v2): barra de anuncio, reserva directa, confianza, FAQ, experiencias --- */
+  Object.assign(EN, {
+    "Experiencias": "Experiences",
+    "Reserva directa · mejor precio garantizado, sin cargos y cancelación flexible.":
+      "Book direct · best price guaranteed, no fees and flexible cancellation.",
+    "Ver ventajas": "See the benefits",
+    "Cerrar aviso": "Close notice",
+    "Reserva por WhatsApp": "Book via WhatsApp",
+    "Escribir por WhatsApp": "Message us on WhatsApp",
+    "Reservar": "Book",
+    "2 adultos · 1 habitación": "2 adults · 1 room",
+    "1 adulto · 1 habitación": "1 adult · 1 room",
+    "2 adultos · 1 niño": "2 adults · 1 child",
+    "2 adultos · 2 niños": "2 adults · 2 children",
+    "4 adultos · 2 habitaciones": "4 adults · 2 rooms",
+
+    "Reserva en el sitio oficial y obtén más": "Book on the official site and get more",
+    "Ventajas exclusivas que solo tienes al reservar directo con el hotel, no en agencias de viaje.":
+      "Exclusive benefits you only get by booking direct with the hotel, not through travel agencies.",
+    "Mejor precio garantizado": "Best price guaranteed",
+    "Si encuentras una tarifa pública más baja, la igualamos y descontamos un 10 % más.":
+      "If you find a lower public rate, we match it and take another 10% off.",
+    "Cancelación flexible": "Flexible cancellation",
+    "La mayoría de tarifas se cancelan sin cargo hasta 48 h antes de la llegada.":
+      "Most rates can be cancelled free of charge up to 48 h before arrival.",
+    "Sin cargos ni comisiones": "No fees or commissions",
+    "Pagas la tarifa del hotel, sin recargos de intermediarios.":
+      "You pay the hotel rate, with no middleman surcharges.",
+    "Mejora de categoría": "Room upgrade",
+    "Prioridad de upgrade según disponibilidad al momento del check-in.":
+      "Upgrade priority based on availability at check-in.",
+    "Bebida de bienvenida": "Welcome drink",
+    "Cortesía en Azul Pool Bar o NAU al llegar, reservando directo.":
+      "On the house at Azul Pool Bar or NAU on arrival when you book direct.",
+    "Check-out tardío": "Late check-out",
+    "Hasta las 14:00 sin costo cuando reservas en este sitio (según ocupación).":
+      "Until 2:00 p.m. at no charge when you book on this site (subject to occupancy).",
+
+    "Lo que dicen nuestros huéspedes": "What our guests say",
+    "El Salvador empieza en la puerta del hotel": "El Salvador starts at the hotel's doorstep",
+    "Surf City y las playas de El Tunco y El Zonte, el volcán de Santa Ana y el lago de Coatepeque, la Ruta de las Flores y la Ruta del Café, el centro histórico y Suchitoto. Nuestra conserjería organiza traslados y guías para cada plan.":
+      "Surf City and the beaches of El Tunco and El Zonte, the Santa Ana volcano and Lake Coatepeque, the Ruta de las Flores and the Coffee Route, the historic center and Suchitoto. Our concierge arranges transfers and guides for every plan.",
+    "Descubre El Salvador": "Discover El Salvador",
+    "A tu alcance": "Within reach",
+    "Conserjería": "Concierge",
+
+    "Preguntas frecuentes": "Frequently asked questions",
+    "¿A qué hora es el check-in y el check-out?": "What are the check-in and check-out times?",
+    "Check-in a partir de las 3:00 p. m. y check-out hasta las 12:00 m. d. El check-in exprés y el check-out tardío están disponibles para huéspedes del Club InterContinental y, según ocupación, para reservas directas.":
+      "Check-in from 3:00 p.m. and check-out until 12:00 noon. Express check-in and late check-out are available for Club InterContinental guests and, subject to occupancy, for direct bookings.",
+    "¿El hotel tiene estacionamiento?": "Does the hotel have parking?",
+    "Sí. Estacionamiento en el hotel por 5 USD por vehículo y día, con acceso directo desde Boulevard de los Héroes y conexión peatonal a Metrocentro.":
+      "Yes. On-site parking for 5 USD per vehicle per day, with direct access from Boulevard de los Héroes and a pedestrian link to Metrocentro.",
+    "¿Puedo llevar a mi mascota?": "Can I bring my pet?",
+    "Aceptamos mascotas de hasta 15 kg en habitaciones designadas, con un cargo de limpieza. Avísanos al reservar para confirmar disponibilidad.":
+      "We welcome pets up to 15 kg in designated rooms, with a cleaning fee. Let us know when booking to confirm availability.",
+    "¿Ofrecen traslado desde el aeropuerto?": "Do you offer airport transfers?",
+    "Sí. Traslado privado en sedán desde el Aeropuerto Internacional Monseñor Óscar Arnulfo Romero (SAL), a unos 45 minutos. Se agrega como extra en el motor de reservas o se solicita en recepción.":
+      "Yes. Private sedan transfer from Monseñor Óscar Arnulfo Romero International Airport (SAL), about 45 minutes away. Add it as an extra in the booking engine or request it at the front desk.",
+    "¿Cuál es el horario de la piscina?": "What are the pool hours?",
+    "La piscina al aire libre abre todos los días de 6:00 a 21:00. El Azul Pool Bar sirve de 10:00 a 19:00.":
+      "The outdoor pool is open daily from 6:00 to 21:00. Azul Pool Bar serves from 10:00 to 19:00.",
+    "¿Los niños tienen tarifa especial?": "Is there a special rate for children?",
+    "Hasta dos menores se hospedan sin costo en la habitación de sus padres. Con el paquete Family Getaway, el desayuno es gratis para menores de 12 años.":
+      "Up to two children stay free in their parents' room. With the Family Getaway package, breakfast is free for children under 12.",
+
+    "Un país entero en menos de dos horas": "A whole country in under two hours",
+    "El Salvador cabe en un fin de semana: playas de clase mundial por la mañana, un volcán y un lago de cráter por la tarde, pueblos de café y murales al día siguiente. Desde el hotel, todo queda cerca.":
+      "El Salvador fits into a weekend: world-class beaches in the morning, a volcano and a crater lake in the afternoon, coffee towns and murals the next day. From the hotel, everything is close.",
+    "Nuestra conserjería organiza traslados privados, guías certificados y reservas para cada plan. Pídelo en recepción o al hacer tu reserva.":
+      "Our concierge arranges private transfers, certified guides and reservations for every plan. Ask at the front desk or when you book.",
+    "Naturaleza y aventura": "Nature and adventure",
+    "Cultura y tradición": "Culture and tradition",
+    "Sin salir de la ciudad": "Without leaving the city",
+    "Surf City: El Tunco y El Zonte": "Surf City: El Tunco and El Zonte",
+    "Volcán de Santa Ana y Lago de Coatepeque": "Santa Ana Volcano and Lake Coatepeque",
+    "Ruta de las Flores": "Ruta de las Flores",
+    "Suchitoto": "Suchitoto",
+    "Joya de Cerén, Patrimonio de la Humanidad": "Joya de Cerén, a World Heritage Site",
+    "Ruta del Café": "The Coffee Route",
+    "Centro histórico": "Historic center",
+    "Metrocentro y Multiplaza": "Metrocentro and Multiplaza",
+    "Zona Rosa y San Benito": "Zona Rosa and San Benito",
+    "Arma tu itinerario con nosotros": "Plan your itinerary with us",
+    "Cuéntale a la conserjería qué te interesa y prepara traslados, guías y reservas antes de tu llegada.":
+      "Tell the concierge what you're interested in and we'll arrange transfers, guides and reservations before you arrive.",
+    "Escribir a la conserjería": "Contact the concierge",
+
+    "Comparar todas las habitaciones": "Compare all rooms",
+    "Ocultar comparación": "Hide comparison",
+    "Desde (USD / noche)": "From (USD / night)",
+    "Sala de estar": "Living area",
+    "Acceso al Club Lounge": "Club Lounge access",
+    "Ver": "View",
+
+    "Celebraciones sociales": "Social celebrations",
+    "Los momentos que se recuerdan toda la vida, con la logística resuelta y catering propio.":
+      "The moments you remember for a lifetime, with the logistics handled and in-house catering.",
+    "Quinceañeras": "Quinceañeras",
+    "Graduaciones": "Graduations",
+    "Aniversarios y bautizos": "Anniversaries and christenings",
+    "Cenas de gala y premiaciones": "Gala dinners and award ceremonies",
+    "Quinceañera": "Quinceañera",
+    "Graduación": "Graduation",
+    "Cena de gala o premiación": "Gala dinner or award ceremony",
+    "Aniversario o bautizo": "Anniversary or christening",
+
+    "Precio indicativo por noche, desde. Toca un día para fijar la entrada.":
+      "Indicative price per night, from. Tap a day to set the check-in date.",
+    "Mes anterior": "Previous month", "Mes siguiente": "Next month",
+    "Suscríbete y recibe un 10 % de descuento en tu primera reserva directa.":
+      "Subscribe and get 10% off your first direct booking.",
+    "WhatsApp": "WhatsApp"
+  });
+
+  Object.assign(PT, {
+    "Experiencias": "Experiências",
+    "Reserva directa · mejor precio garantizado, sin cargos y cancelación flexible.":
+      "Reserva direta · melhor preço garantido, sem taxas e com cancelamento flexível.",
+    "Ver ventajas": "Ver vantagens",
+    "Reserva por WhatsApp": "Reserve pelo WhatsApp",
+    "2 adultos · 1 habitación": "2 adultos · 1 quarto",
+    "1 adulto · 1 habitación": "1 adulto · 1 quarto",
+    "2 adultos · 1 niño": "2 adultos · 1 criança",
+    "2 adultos · 2 niños": "2 adultos · 2 crianças",
+    "4 adultos · 2 habitaciones": "4 adultos · 2 quartos",
+
+    "Reserva en el sitio oficial y obtén más": "Reserve no site oficial e ganhe mais",
+    "Ventajas exclusivas que solo tienes al reservar directo con el hotel, no en agencias de viaje.":
+      "Vantagens exclusivas que você só tem reservando direto com o hotel, não em agências de viagem.",
+    "Mejor precio garantizado": "Melhor preço garantido",
+    "Si encuentras una tarifa pública más baja, la igualamos y descontamos un 10 % más.":
+      "Se encontrar uma tarifa pública mais baixa, nós igualamos e ainda damos 10% de desconto.",
+    "Cancelación flexible": "Cancelamento flexível",
+    "La mayoría de tarifas se cancelan sin cargo hasta 48 h antes de la llegada.":
+      "A maioria das tarifas pode ser cancelada sem custo até 48 h antes da chegada.",
+    "Sin cargos ni comisiones": "Sem taxas nem comissões",
+    "Pagas la tarifa del hotel, sin recargos de intermediarios.":
+      "Você paga a tarifa do hotel, sem acréscimos de intermediários.",
+    "Mejora de categoría": "Upgrade de categoria",
+    "Prioridad de upgrade según disponibilidad al momento del check-in.":
+      "Prioridade de upgrade conforme disponibilidade no check-in.",
+    "Bebida de bienvenida": "Drink de boas-vindas",
+    "Cortesía en Azul Pool Bar o NAU al llegar, reservando directo.":
+      "Cortesia no Azul Pool Bar ou no NAU na chegada, reservando direto.",
+    "Check-out tardío": "Check-out tardio",
+    "Hasta las 14:00 sin costo cuando reservas en este sitio (según ocupación).":
+      "Até as 14h sem custo ao reservar neste site (conforme ocupação).",
+
+    "Lo que dicen nuestros huéspedes": "O que dizem nossos hóspedes",
+    "El Salvador empieza en la puerta del hotel": "El Salvador começa na porta do hotel",
+    "Descubre El Salvador": "Descubra El Salvador",
+    "Conserjería": "Concierge",
+    "Preguntas frecuentes": "Perguntas frequentes",
+    "Un país entero en menos de dos horas": "Um país inteiro em menos de duas horas",
+    "Naturaleza y aventura": "Natureza e aventura",
+    "Cultura y tradición": "Cultura e tradição",
+    "Sin salir de la ciudad": "Sem sair da cidade",
+    "Ruta del Café": "Rota do Café",
+    "Centro histórico": "Centro histórico",
+    "Arma tu itinerario con nosotros": "Monte seu roteiro conosco",
+    "Escribir a la conserjería": "Falar com o concierge",
+    "Comparar todas las habitaciones": "Comparar todos os quartos",
+    "Ocultar comparación": "Ocultar comparação",
+    "Desde (USD / noche)": "A partir de (USD / noite)",
+    "Sala de estar": "Sala de estar",
+    "Ver": "Ver",
+    "Celebraciones sociales": "Celebrações sociais",
+    "Quinceañeras": "Festas de 15 anos",
+    "Graduaciones": "Formaturas",
+    "Precio indicativo por noche, desde. Toca un día para fijar la entrada.":
+      "Preço indicativo por noite, a partir de. Toque em um dia para definir a entrada.",
+    "Suscríbete y recibe un 10 % de descuento en tu primera reserva directa.":
+      "Assine e ganhe 10% de desconto na sua primeira reserva direta."
+  });
+
   var DICTS = { en: EN, pt: PT };
 
   var norm = function (s) { return s.replace(/\s+/g, " ").trim(); };
