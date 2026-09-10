@@ -1042,3 +1042,23 @@ body.announce-off .announce { display: none; }
 .exp__body h3 { font-size: 1.3rem; }
 .exp__dist { font-family: var(--font-sans-alt); font-size: .66rem; letter-spacing: .06em; text-transform: uppercase; font-weight: 700; color: var(--gold-dark); }
 .exp__body p { font-size: .93rem; color: var(--ink-2); }
+
+/* ============================================================
+   Capa cinemática — GSAP + ScrollTrigger
+   Estados iniciales en CSS para que no haya salto al cargar.
+   Sólo con html.cinematic (JS activo y sin prefers-reduced-
+   motion). cinematic.js quita la clase si GSAP no carga, y
+   todo vuelve a su sitio.
+   ============================================================ */
+@media (prefers-reduced-motion: no-preference) {
+  html.cinematic .hero__media img,
+  html.cinematic .pagehero__media img { transform: scale(1.08); will-change: transform; }
+
+  html.cinematic .split__media img { transform: scale(1.16); will-change: transform; }
+
+  html.cinematic .feature img,
+  html.cinematic .card__media img,
+  html.cinematic .offer__media img,
+  html.cinematic .exp__media img,
+  html.cinematic .gallery-grid img { clip-path: inset(7% 7% 7% 7%); will-change: clip-path; }
+}

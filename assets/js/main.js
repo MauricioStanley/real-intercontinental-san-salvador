@@ -55,7 +55,7 @@
 
   /* ---------- Parallax suave (hero y page-hero) ---------- */
   var parallaxEls = $$("[data-parallax]");
-  if (parallaxEls.length && !reduceMotion) {
+  if (parallaxEls.length && !reduceMotion && !window.__CINEMATIC__) {
     var ticking = false;
     var applyParallax = function () {
       var y = window.scrollY;

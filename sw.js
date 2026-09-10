@@ -1,13 +1,13 @@
 /* Service worker — caché básico para carga instantánea y uso sin conexión.
    Estrategia: "stale-while-revalidate" para todo lo del mismo origen. */
-var CACHE = "ic-sv-v1";
+var CACHE = "ic-sv-v2";
 var CORE = [
   "index.html", "habitaciones.html", "gastronomia.html", "spa-bienestar.html",
   "eventos.html", "ofertas.html", "experiencias.html", "galeria.html",
   "ubicacion.html", "reservar.html", "privacidad.html",
   "assets/css/styles.css",
   "assets/js/data.js", "assets/js/partials.js", "assets/js/main.js",
-  "assets/js/booking.js", "assets/js/i18n.js",
+  "assets/js/cinematic.js", "assets/js/booking.js", "assets/js/i18n.js",
   "favicon.svg", "manifest.json"
 ];
 
