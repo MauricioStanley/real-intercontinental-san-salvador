@@ -57,7 +57,9 @@ manifest.json · sw.js PWA (instalable, caché offline)
   quedar válido y un aviso en rojo ladrillo si hay un error, mientras se escribe.
   Cubre el asistente de reserva, el formulario de eventos, el de contacto y el
   boletín — sin `alert()` nativos.
-- **Barra de reserva fija** que aparece al hacer scroll en todas las páginas.
+- **Barra rápida de reserva** en la portada (fechas + huéspedes con respuestas
+  rápidas de un `<select>`), estática — no se mueve ni aparece/desaparece al
+  hacer scroll.
 - **Motor de reservas** de 5 pasos con **calendario de tarifas indicativas** por día
   (temporada alta/baja y fin de semana), resumen de precio en vivo e impuestos.
 - **Comparador de habitaciones** en `habitaciones.html`.

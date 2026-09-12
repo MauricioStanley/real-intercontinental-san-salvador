@@ -99,65 +99,27 @@
     }
   }
 
-  /* ---------- Barra de reserva (hero) ---------- */
-  var bookbar = $("#bookbar");
-  if (bookbar) {
-    var ci = $("#bb-checkin"), co = $("#bb-checkout");
-    var fmt = function (d) { return d.toISOString().slice(0, 10); };
-    var today = new Date();
-    var tmr = new Date(); tmr.setDate(tmr.getDate() + 1);
-    var dayAfter = new Date(); dayAfter.setDate(dayAfter.getDate() + 2);
-    if (ci && !ci.value) { ci.value = fmt(tmr); ci.min = fmt(today); }
-    if (co && !co.value) { co.value = fmt(dayAfter); co.min = fmt(dayAfter); }
-    if (ci && co) {
-      ci.addEventListener("change", function () {
-        var next = new Date(ci.value); next.setDate(next.getDate() + 1);
-        co.min = fmt(next);
-        if (new Date(co.value) <= new Date(ci.value)) co.value = fmt(next);
-      });
-    }
-
-    /* stepper de huéspedes */
-    var guestsField = $("#bb-guests");
-    var pop = $("#guests-pop");
-    if (guestsField && pop) {
-      var state = { adults: 2, children: 0, rooms: 1 };
-      var display = $("#bb-guests-display");
-      var sync = function () {
-        display.textContent = state.adults + " adultos · " + state.children + " niños · " + state.rooms + (state.rooms > 1 ? " habitaciones" : " habitación");
-        $$("[data-step]").forEach(function (b) {
-          var k = b.getAttribute("data-step").split(":")[0];
-          $("#val-" + k).textContent = state[k];
-        });
-      };
-      guestsField.addEventListener("click", function (e) {
-        e.stopPropagation();
-        pop.classList.toggle("open");
-      });
-      pop.addEventListener("click", function (e) { e.stopPropagation(); });
-      document.addEventListener("click", function () { pop.classList.remove("open"); });
-      $$("[data-step]", pop).forEach(function (b) {
-        b.addEventListener("click", function () {
-          var parts = b.getAttribute("data-step").split(":");
-          var k = parts[0], dir = parts[1] === "up" ? 1 : -1;
-          var min = k === "adults" || k === "rooms" ? 1 : 0;
-          state[k] = Math.max(min, Math.min(9, state[k] + dir));
-          if (state.rooms > state.adults) state.rooms = state.adults;
-          sync();
-        });
-      });
-      sync();
-      bookbar._guests = state;
-    }
-
-    bookbar.addEventListener("submit", function (e) {
+  /* ---------- Barra rápida de reserva (portada) ---------- */
+  var quickbook = $("#quickbook-form");
+  if (quickbook) {
+    var qi = $("#qb-in"), qo = $("#qb-out");
+    var qfmt = function (d) { return d.toISOString().slice(0, 10); };
+    var qToday = new Date();
+    var qTmr = new Date(); qTmr.setDate(qTmr.getDate() + 1);
+    var qDayAfter = new Date(); qDayAfter.setDate(qDayAfter.getDate() + 2);
+    qi.value = qfmt(qTmr); qi.min = qfmt(qToday);
+    qo.value = qfmt(qDayAfter); qo.min = qfmt(qDayAfter);
+    qi.addEventListener("change", function () {
+      var next = new Date(qi.value); next.setDate(next.getDate() + 1);
+      qo.min = qfmt(next);
+      if (new Date(qo.value) <= new Date(qi.value)) qo.value = qfmt(next);
+    });
+    quickbook.addEventListener("submit", function (e) {
       e.preventDefault();
-      var g = bookbar._guests || { adults: 2, children: 0, rooms: 1 };
+      var g = $("#qb-g").value.split("|");
       var params = new URLSearchParams({
-        checkin: ci ? ci.value : "",
-        checkout: co ? co.value : "",
-        adults: g.adults, children: g.children, rooms: g.rooms,
-        promo: ($("#bb-promo") && $("#bb-promo").value) || "",
+        checkin: qi.value, checkout: qo.value,
+        adults: g[0], children: g[1], rooms: g[2],
       });
       window.location.href = "reservar.html?" + params.toString();
     });

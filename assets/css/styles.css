@@ -422,75 +422,6 @@ body.nav-open .burger span:nth-child(3) { transform: translateY(-8px) rotate(-45
 .crumbs a:hover { color: #fff; }
 .crumbs span { color: var(--gold-on-dark); }
 
-/* ---------- Barra de reserva ---------- */
-.bookbar-wrap { position: relative; z-index: 40; margin-top: clamp(-100px, -9vh, -66px); }
-.bookbar {
-  background: var(--surface);
-  border-radius: var(--r-lg);
-  box-shadow: var(--shadow-3);
-  display: grid;
-  grid-template-columns: repeat(4, 1fr) auto;
-  align-items: stretch;
-  overflow: hidden;
-}
-.bookbar__field {
-  display: flex; flex-direction: column; gap: 5px;
-  padding: var(--s-4) var(--s-5);
-  border-right: 1px solid var(--hairline);
-  transition: background .25s var(--ease);
-  position: relative;
-}
-.bookbar__field label {
-  font-family: var(--font-sans-alt);
-  font-size: .66rem; letter-spacing: .1em; text-transform: uppercase;
-  font-weight: 600; color: var(--ink-3);
-}
-.bookbar__field input,
-.bookbar__field .stepper-display {
-  border: 0; background: transparent; padding: 4px 0;
-  font-size: 1rem; font-weight: 500; color: var(--ink);
-  width: 100%; font-family: var(--font-body);
-}
-.bookbar__field input::-webkit-calendar-picker-indicator { opacity: .4; cursor: pointer; }
-.bookbar__field:focus-within { background: var(--surface-2); }
-.bookbar__guests { cursor: pointer; }
-.bookbar__submit { border: 0; padding: 0; }
-.bookbar__submit .btn { height: 100%; border-radius: 0; padding-inline: clamp(24px, 4vw, 52px); }
-
-.guests-pop {
-  position: absolute; top: calc(100% + 10px); left: 8px; right: 8px;
-  background: var(--surface); box-shadow: var(--shadow-3);
-  border: 1px solid var(--hairline); border-radius: var(--r);
-  padding: var(--s-2) var(--s-5) var(--s-4);
-  z-index: 50; display: none;
-}
-.guests-pop.open { display: block; }
-.guests-row {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: var(--s-3) 0; border-bottom: 1px solid var(--hairline);
-  font-weight: 500;
-}
-.guests-row:last-child { border-bottom: 0; }
-.guests-row .stepper { display: flex; align-items: center; gap: var(--s-4); }
-.stepper button {
-  width: 32px; height: 32px; border: 1px solid var(--hairline); border-radius: 50%;
-  display: grid; place-items: center; font-size: 1.05rem; color: var(--ink);
-  transition: border-color .25s, background .25s, color .25s;
-}
-.stepper button:hover { border-color: var(--emerald); background: var(--surface-2); color: var(--emerald); }
-.stepper span { min-width: 20px; text-align: center; font-weight: 600; }
-
-@media (max-width: 1040px) {
-  .bookbar { grid-template-columns: 1fr 1fr; }
-  .bookbar__field:nth-child(2) { border-right: 0; }
-  .bookbar__submit { grid-column: 1 / -1; }
-  .bookbar__submit .btn { padding-block: 18px; }
-}
-@media (max-width: 560px) {
-  .bookbar { grid-template-columns: 1fr; }
-  .bookbar__field { border-right: 0; border-bottom: 1px solid var(--hairline); }
-}
-
 /* ---------- Cifras (una línea tranquila, sin cajas) ---------- */
 .stats {
   display: flex; flex-wrap: wrap; justify-content: center;
@@ -968,44 +899,28 @@ body.announce-off .announce { display: none; }
   .wa-fab::after { display: none; }
 }
 
-/* --- Barra fija de reserva (aparece al hacer scroll) --- */
-.stickybar {
-  position: fixed; left: 0; right: 0; top: var(--header-h); z-index: 90;
-  background: var(--surface);
-  box-shadow: 0 8px 30px -10px rgba(30,22,10,.28);
-  border-bottom: 1px solid var(--hairline);
-  transform: translateY(-102%);
-  transition: transform .4s var(--ease-out);
-}
-.stickybar.show { transform: translateY(0); }
-.stickybar__in {
-  width: min(100% - 2 * var(--gutter), var(--wrap));
-  margin-inline: auto;
-  display: flex; align-items: center; gap: 18px;
-  padding: 10px 0;
-}
-.stickybar__brand {
+/* --- Barra rápida de reserva (portada; una sola, estática — no se
+   mueve ni aparece/desaparece con el scroll) --- */
+.quickbook-wrap { position: relative; z-index: 40; margin-top: clamp(-100px, -9vh, -66px); }
+.quickbook { background: var(--surface); border-radius: var(--r-lg); box-shadow: var(--shadow-3); }
+.quickbook__in { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; padding: 18px 28px; }
+.quickbook__brand {
   font-family: var(--font-display); font-weight: 600; font-size: 1rem;
   color: var(--ink); white-space: nowrap; letter-spacing: .02em;
 }
-.stickybar form { display: flex; align-items: center; gap: 10px; flex: 1; flex-wrap: wrap; }
-.stickybar label { font-size: .62rem; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); font-weight: 600; display: block; }
-.stickybar .fld { display: flex; flex-direction: column; gap: 2px; }
-.stickybar input, .stickybar select {
+.quickbook form { display: flex; align-items: center; gap: 16px; flex: 1; flex-wrap: wrap; }
+.quickbook label { font-size: .66rem; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); font-weight: 600; display: block; margin-bottom: 4px; }
+.quickbook .fld { display: flex; flex-direction: column; gap: 2px; }
+.quickbook input, .quickbook select {
   border: 1px solid var(--hairline); border-radius: var(--r-sm);
-  padding: 7px 9px; font-size: .9rem; background: var(--surface); color: var(--ink);
+  padding: 9px 11px; font-size: .92rem; background: var(--surface); color: var(--ink);
 }
-.stickybar .btn { padding: .8em 1.5em; }
-@media (max-width: 900px) {
-  .stickybar__brand { display: none; }
-  .stickybar form { gap: 8px; }
-  .stickybar .fld--guests { display: none; }
-  .stickybar input { width: 132px; }
-}
-@media (max-width: 560px) {
-  .stickybar .fld { flex: 1; }
-  .stickybar input { width: 100%; }
-  .stickybar .btn { width: 100%; }
+.quickbook .btn { padding: .85em 1.8em; white-space: nowrap; }
+@media (max-width: 900px) { .quickbook__brand { display: none; } }
+@media (max-width: 700px) {
+  .quickbook__in { flex-direction: column; align-items: stretch; padding: 20px; }
+  .quickbook form { flex-direction: column; align-items: stretch; gap: 12px; }
+  .quickbook .fld, .quickbook input, .quickbook select, .quickbook .btn { width: 100%; }
 }
 
 /* --- Ventajas de reserva directa --- */

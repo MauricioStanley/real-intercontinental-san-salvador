@@ -25,57 +25,6 @@
     try { if (localStorage.getItem("ic_announce") === "off") document.body.classList.add("announce-off"); } catch (e) {}
   }
 
-  /* ---------- Barra fija de reserva (aparece al hacer scroll) ---------- */
-  if (!document.querySelector(".stickybar")) {
-    var fmt = function (d) { return d.toISOString().slice(0, 10); };
-    var t1 = new Date(); t1.setDate(t1.getDate() + 1);
-    var t2 = new Date(); t2.setDate(t2.getDate() + 2);
-    var sb = document.createElement("div");
-    sb.className = "stickybar";
-    sb.innerHTML =
-      '<div class="stickybar__in">' +
-        '<span class="stickybar__brand">InterContinental San&nbsp;Salvador</span>' +
-        '<form id="stickyform">' +
-          '<div class="fld"><label for="sb-in">Entrada</label><input type="date" id="sb-in" value="' + fmt(t1) + '" min="' + fmt(new Date()) + '"></div>' +
-          '<div class="fld"><label for="sb-out">Salida</label><input type="date" id="sb-out" value="' + fmt(t2) + '"></div>' +
-          '<div class="fld fld--guests"><label for="sb-g">Huéspedes</label>' +
-            '<select id="sb-g">' +
-              '<option value="2|0|1">2 adultos · 1 habitación</option>' +
-              '<option value="1|0|1">1 adulto · 1 habitación</option>' +
-              '<option value="2|1|1">2 adultos · 1 niño</option>' +
-              '<option value="2|2|1">2 adultos · 2 niños</option>' +
-              '<option value="4|0|2">4 adultos · 2 habitaciones</option>' +
-            '</select></div>' +
-          '<button class="btn btn--gold" type="submit">Reservar</button>' +
-        '</form>' +
-      '</div>';
-    document.body.insertBefore(sb, document.body.firstChild);
-
-    var sin = sb.querySelector("#sb-in"), sout = sb.querySelector("#sb-out");
-    sin.addEventListener("change", function () {
-      var n = new Date(sin.value); n.setDate(n.getDate() + 1);
-      if (new Date(sout.value) <= new Date(sin.value)) sout.value = fmt(n);
-      sout.min = fmt(n);
-    });
-    sb.querySelector("#stickyform").addEventListener("submit", function (e) {
-      e.preventDefault();
-      var g = sb.querySelector("#sb-g").value.split("|");
-      var p = new URLSearchParams({
-        checkin: sin.value, checkout: sout.value,
-        adults: g[0], children: g[1], rooms: g[2]
-      });
-      window.location.href = "reservar.html?" + p.toString();
-    });
-
-    var hero = document.querySelector(".hero, .pagehero");
-    var onScroll = function () {
-      var th = hero ? Math.max(260, hero.offsetHeight * 0.65) : 300;
-      sb.classList.toggle("show", window.scrollY > th);
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
-  }
-
   /* ---------- Botón flotante de WhatsApp ---------- */
   if (!document.querySelector(".wa-fab")) {
     var w = document.createElement("a");

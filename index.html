@@ -120,32 +120,27 @@
   <div class="hero__scroll" aria-hidden="true"><span>Descubre</span><i></i></div>
 </section>
 
-<!-- ================= BARRA DE RESERVA ================= -->
-<div class="wrap bookbar-wrap">
-  <form class="bookbar" id="bookbar" aria-label="Buscar disponibilidad">
-    <div class="bookbar__field">
-      <label for="bb-checkin">Entrada</label>
-      <input type="date" id="bb-checkin" name="checkin" required>
+<!-- ================= BARRA RÁPIDA DE RESERVA ================= -->
+<div class="wrap quickbook-wrap">
+  <div class="quickbook">
+    <div class="quickbook__in">
+      <span class="quickbook__brand">InterContinental San&nbsp;Salvador</span>
+      <form id="quickbook-form">
+        <div class="fld"><label for="qb-in">Entrada</label><input type="date" id="qb-in" required></div>
+        <div class="fld"><label for="qb-out">Salida</label><input type="date" id="qb-out" required></div>
+        <div class="fld"><label for="qb-g">Huéspedes</label>
+          <select id="qb-g">
+            <option value="2|0|1">2 adultos · 1 habitación</option>
+            <option value="1|0|1">1 adulto · 1 habitación</option>
+            <option value="2|1|1">2 adultos · 1 niño</option>
+            <option value="2|2|1">2 adultos · 2 niños</option>
+            <option value="4|0|2">4 adultos · 2 habitaciones</option>
+          </select>
+        </div>
+        <button class="btn btn--gold" type="submit">Reservar</button>
+      </form>
     </div>
-    <div class="bookbar__field">
-      <label for="bb-checkout">Salida</label>
-      <input type="date" id="bb-checkout" name="checkout" required>
-    </div>
-    <div class="bookbar__field bookbar__guests" id="bb-guests" tabindex="0" role="button" aria-haspopup="true" aria-expanded="false">
-      <label>Huéspedes</label>
-      <span class="stepper-display" id="bb-guests-display">2 adultos · 0 niños · 1 habitación</span>
-      <div class="guests-pop" id="guests-pop">
-        <div class="guests-row"><span>Adultos</span><span class="stepper"><button type="button" data-step="adults:down" aria-label="menos adultos">−</button><span id="val-adults">2</span><button type="button" data-step="adults:up" aria-label="más adultos">+</button></span></div>
-        <div class="guests-row"><span>Niños</span><span class="stepper"><button type="button" data-step="children:down" aria-label="menos niños">−</button><span id="val-children">0</span><button type="button" data-step="children:up" aria-label="más niños">+</button></span></div>
-        <div class="guests-row"><span>Habitaciones</span><span class="stepper"><button type="button" data-step="rooms:down" aria-label="menos habitaciones">−</button><span id="val-rooms">1</span><button type="button" data-step="rooms:up" aria-label="más habitaciones">+</button></span></div>
-      </div>
-    </div>
-    <div class="bookbar__field">
-      <label for="bb-promo">Código / Tarifa</label>
-      <input type="text" id="bb-promo" name="promo" placeholder="Opcional">
-    </div>
-    <button class="bookbar__submit" type="submit"><span class="btn btn--gold">Consultar</span></button>
-  </form>
+  </div>
 </div>
 
 <!-- ================= BIENVENIDA ================= -->
