@@ -53,8 +53,6 @@ manifest.json · sw.js PWA (instalable, caché offline)
 - **Apertura 3D** en la portada (Three.js): una gema facetada dorada se forma y gira
   antes de revelar el sitio — una sola vez por sesión, omitible, y se salta sola si
   el navegador pide menos movimiento, ahorra datos o no soporta WebGL.
-- **Encuentra tu habitación ideal**: quiz de dos preguntas en la portada que
-  recomienda una categoría (con el porqué) y enlaza directo a reservarla.
 - **Validación de formularios en vivo**: cada campo muestra un check dorado al
   quedar válido y un aviso en rojo ladrillo si hay un error, mientras se escribe.
   Cubre el asistente de reserva, el formulario de eventos, el de contacto y el
