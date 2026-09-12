@@ -20,11 +20,17 @@
     children: +(params.get("children") || 0),
     rooms: +(params.get("rooms") || 1),
     promo: params.get("promo") || "",
-    roomId: null,
+    roomId: params.get("room") || null,
     rateId: null,
     addons: {},
     guest: {},
   };
+  // si llega una habitación preseleccionada (p. ej. desde "Encuentra tu
+  // habitación ideal"), le asigna de una vez la tarifa flexible por defecto
+  // para que el paso 2 la muestre ya marcada.
+  if (state.roomId && D.rateTypes && D.rateTypes[0]) {
+    state.rateId = params.get("rate") || D.rateTypes[0].id;
+  }
 
   /* --- fechas por defecto --- */
   var fmt = function (d) { return d.toISOString().slice(0, 10); };
@@ -159,8 +165,8 @@
     return '' +
       '<div class="wizard-panel active"><h2 class="h-md">Fechas y huéspedes</h2><hr class="goldrule" style="margin:18px 0 28px">' +
       '<div class="form-grid">' +
-        field("Entrada", '<input type="date" id="w-checkin" value="' + state.checkin + '">') +
-        field("Salida", '<input type="date" id="w-checkout" value="' + state.checkout + '">') +
+        field("Entrada", '<input type="date" id="w-checkin" value="' + state.checkin + '" required>') +
+        field("Salida", '<input type="date" id="w-checkout" value="' + state.checkout + '" required data-compare-after="#w-checkin">') +
         field("Adultos", numSelect("w-adults", 1, 6, state.adults)) +
         field("Niños", numSelect("w-children", 0, 4, state.children)) +
         field("Habitaciones", numSelect("w-rooms", 1, 4, state.rooms)) +
@@ -204,6 +210,7 @@
     return '<div class="wizard-panel active"><h2 class="h-md">Elige tu habitación</h2>' +
       '<p class="form-note" style="margin:10px 0 24px">' + dateHuman(state.checkin) + ' – ' + dateHuman(state.checkout) + ' · ' + n + ' noche(s) · ' + guestCount() + ' huésped(es)</p>' +
       html +
+      '<div class="wizard-alert" id="wizard-alert"><div>' + window.ICValidate.ICON_ERR + '<span>' + window.ICValidate.t("roomRate") + '</span></div></div>' +
       '<div class="wizard-nav"><button class="btn btn--ghost" data-back>Volver</button><button class="btn btn--gold" data-next>Continuar</button></div>' +
       '</div>';
   }
@@ -232,8 +239,8 @@
     var g = state.guest;
     return '<div class="wizard-panel active"><h2 class="h-md">Datos del huésped</h2><hr class="goldrule" style="margin:18px 0 28px">' +
       '<form id="guest-form" novalidate><div class="form-grid">' +
-        field("Nombre", '<input type="text" id="g-first" value="' + (g.first || "") + '" required>') +
-        field("Apellido", '<input type="text" id="g-last" value="' + (g.last || "") + '" required>') +
+        field("Nombre", '<input type="text" id="g-first" value="' + (g.first || "") + '" required data-validate="name">') +
+        field("Apellido", '<input type="text" id="g-last" value="' + (g.last || "") + '" required data-validate="name">') +
         field("Correo electrónico", '<input type="email" id="g-email" value="' + (g.email || "") + '" required>') +
         field("Teléfono", '<input type="tel" id="g-phone" value="' + (g.phone || "") + '" required>') +
         field("País de residencia", '<input type="text" id="g-country" value="' + (g.country || "") + '">') +
@@ -312,6 +319,8 @@
   }
 
   function bind() {
+    if (window.ICValidate) window.ICValidate.wireAll(panels);
+
     var next = $("[data-next]"), back = $("[data-back]");
     if (next) next.addEventListener("click", onNext);
     if (back) back.addEventListener("click", function () { state.step--; render(); });
@@ -319,7 +328,10 @@
     if (state.step === 1) {
       ["w-checkin", "w-checkout", "w-adults", "w-children", "w-rooms", "w-promo"].forEach(function (id) {
         var el = $("#" + id);
-        if (el) el.addEventListener("change", readStep1);
+        if (el) el.addEventListener("change", function () {
+          readStep1();
+          if (window.ICValidate) window.ICValidate.refresh(panels);
+        });
       });
       $$("[data-cal-nav]").forEach(function (b) {
         b.addEventListener("click", function () {
@@ -345,6 +357,8 @@
           var v = r.value.split("|");
           state.roomId = v[0]; state.rateId = v[1];
           $("#wizard-summary").innerHTML = summary();
+          var box = $("#wizard-alert");
+          if (box) box.classList.remove("show");
         });
       });
     }
@@ -359,14 +373,12 @@
     if (state.step === 4) {
       $("#guest-form").addEventListener("submit", function (e) {
         e.preventDefault();
+        var form = e.target;
+        if (window.ICValidate && !window.ICValidate.validateForm(form)) return;
         state.guest = {
           first: val("g-first"), last: val("g-last"), email: val("g-email"),
           phone: val("g-phone"), country: val("g-country"), eta: val("g-eta"), notes: val("g-notes"),
         };
-        if (!state.guest.first || !state.guest.last || !state.guest.email || !state.guest.phone) {
-          alert("Por favor completa nombre, apellido, correo y teléfono.");
-          return;
-        }
         state.step = 5; render();
       });
     }
@@ -391,7 +403,15 @@
   function onNext() {
     if (state.step === 1) { readStep1(); state.step = 2; }
     else if (state.step === 2) {
-      if (!state.roomId || !state.rateId) { alert("Elige una habitación y una tarifa para continuar."); return; }
+      if (!state.roomId || !state.rateId) {
+        var box = $("#wizard-alert");
+        if (box) {
+          box.classList.add("show");
+          box.classList.remove("ic-shake"); void box.offsetWidth; box.classList.add("ic-shake");
+          box.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+        return;
+      }
       state.step = 3;
     }
     else if (state.step === 3) { state.step = 4; }

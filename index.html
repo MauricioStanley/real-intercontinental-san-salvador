@@ -18,6 +18,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/styles.css">
 <script>(function(d){try{if(!matchMedia("(prefers-reduced-motion:reduce)").matches){window.__CINEMATIC__=1;d.documentElement.classList.add("cinematic");}}catch(e){}})(document);</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+<script src="assets/js/intro3d.js" defer></script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -64,6 +66,14 @@
 <noscript><style>.reveal,.reveal-img{opacity:1!important;transform:none!important;clip-path:none!important}</style></noscript>
 </head>
 <body>
+<div id="intro3d" aria-hidden="true">
+  <canvas id="intro3d-canvas"></canvas>
+  <div class="intro3d__mark">
+    <span class="intro3d__label">Real InterContinental</span>
+    <span class="intro3d__label2">San Salvador</span>
+  </div>
+  <button type="button" class="intro3d__skip">Omitir</button>
+</div>
 <a class="skip" href="#main">Saltar al contenido</a>
 
 <!-- ================= HEADER ================= -->
@@ -229,6 +239,44 @@
       </article>
     </div>
     <div class="center" style="margin-top:44px"><a class="btn btn--ghost" href="habitaciones.html">Ver todas las habitaciones</a></div>
+  </div>
+</section>
+
+<!-- ================= ENCUENTRA TU HABITACIÓN (quiz) ================= -->
+<section class="section section--sand" id="room-finder">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <p class="eyebrow">Elige en 10 segundos</p>
+      <h2 class="h-lg">Encuentra tu habitación ideal</h2>
+      <p class="lede">Dos preguntas y te mostramos la categoría que más te conviene — sin perder tiempo comparando seis opciones.</p>
+    </div>
+    <div class="finder reveal" id="finder">
+      <div class="finder__progress" aria-hidden="true">
+        <i data-finder-dot="1"></i><i data-finder-dot="2"></i><i data-finder-dot="3"></i>
+      </div>
+
+      <div class="finder__step" data-finder-step="1">
+        <p class="finder__q">¿Con quién viajas?</p>
+        <div class="finder__opts">
+          <button type="button" class="finder__opt" data-answer="travelers:solo">Solo o en pareja</button>
+          <button type="button" class="finder__opt" data-answer="travelers:familia">En familia</button>
+          <button type="button" class="finder__opt" data-answer="travelers:negocios">Por negocios</button>
+        </div>
+      </div>
+
+      <div class="finder__step" data-finder-step="2" hidden>
+        <p class="finder__q">¿Qué es lo más importante para ti?</p>
+        <div class="finder__opts">
+          <button type="button" class="finder__opt" data-answer="pref:esencial">Lo esencial, bien hecho</button>
+          <button type="button" class="finder__opt" data-answer="pref:espacio">Espacio y luz extra</button>
+          <button type="button" class="finder__opt" data-answer="pref:club">Acceso al Club Lounge</button>
+          <button type="button" class="finder__opt" data-answer="pref:lujo">El máximo lujo</button>
+        </div>
+        <button type="button" class="finder__back" data-finder-back>&larr; Volver</button>
+      </div>
+
+      <div class="finder__step" data-finder-step="3" hidden></div>
+    </div>
   </div>
 </section>
 
@@ -447,8 +495,10 @@
 
 <script src="assets/js/data.js"></script>
 <script src="assets/js/partials.js"></script>
+<script src="assets/js/roomfinder.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="assets/js/validate.js"></script>
 <script src="assets/js/main.js"></script>
 <script src="assets/js/cinematic.js"></script>
 <script src="assets/js/i18n.js"></script>

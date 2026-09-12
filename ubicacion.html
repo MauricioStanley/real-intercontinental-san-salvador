@@ -96,15 +96,15 @@
       <p class="lede">Este formulario es para consultas generales, grupos y prensa.</p>
       <p class="lede" style="margin-top:6px">¿Vas a reservar? Usa el <a href="reservar.html">motor en línea</a>.</p>
     </div>
-    <form data-demo class="stack" style="gap:20px">
+    <form data-demo novalidate class="stack" style="gap:20px">
       <div class="form-grid">
-        <div class="field"><label for="c-name">Nombre</label><input id="c-name" type="text" required></div>
+        <div class="field"><label for="c-name">Nombre</label><input id="c-name" type="text" required data-validate="name"></div>
         <div class="field"><label for="c-email">Correo</label><input id="c-email" type="email" required></div>
       </div>
       <div class="field"><label for="c-subject">Asunto</label>
         <select id="c-subject"><option>Consulta general</option><option>Grupos y convenios</option><option>Eventos</option><option>Prensa</option><option>Empleo</option></select>
       </div>
-      <div class="field"><label for="c-msg">Mensaje</label><textarea id="c-msg" required></textarea></div>
+      <div class="field"><label for="c-msg">Mensaje</label><textarea id="c-msg" required minlength="10"></textarea></div>
       <div style="display:flex;align-items:center;gap:18px;flex-wrap:wrap">
         <button class="btn btn--gold" type="submit">Enviar mensaje</button>
         <small data-demo-msg hidden style="color:var(--gold-soft)"></small>
@@ -122,6 +122,7 @@
 <script src="assets/js/partials.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="assets/js/validate.js"></script>
 <script src="assets/js/main.js"></script>
 <script src="assets/js/cinematic.js"></script>
 <script src="assets/js/i18n.js"></script>

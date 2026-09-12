@@ -138,9 +138,9 @@
       <h2 class="h-md">Cuéntanos sobre tu evento</h2>
       <p class="lede">Responde en menos de 24 horas hábiles con una propuesta a la medida.</p>
     </div>
-    <form data-demo class="stack" style="gap:20px">
+    <form data-demo novalidate class="stack" style="gap:20px">
       <div class="form-grid">
-        <div class="field"><label for="e-name">Nombre y apellido</label><input id="e-name" type="text" required></div>
+        <div class="field"><label for="e-name">Nombre y apellido</label><input id="e-name" type="text" required data-validate="name"></div>
         <div class="field"><label for="e-email">Correo electrónico</label><input id="e-email" type="email" required></div>
         <div class="field"><label for="e-phone">Teléfono</label><input id="e-phone" type="tel" required></div>
         <div class="field"><label for="e-type">Tipo de evento</label>
@@ -167,6 +167,7 @@
 <script src="assets/js/partials.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="assets/js/validate.js"></script>
 <script src="assets/js/main.js"></script>
 <script src="assets/js/cinematic.js"></script>
 <script src="assets/js/i18n.js"></script>

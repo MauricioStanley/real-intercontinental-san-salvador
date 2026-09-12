@@ -132,7 +132,7 @@
       '<div>' +
         '<h4>Boletín</h4>' +
         '<p class="muted" style="margin-bottom:14px">Suscríbete y recibe un <strong>10&nbsp;% de descuento</strong> en tu primera reserva directa.</p>' +
-        '<form data-demo class="stack" style="gap:10px">' +
+        '<form data-demo novalidate class="stack" style="gap:10px">' +
           '<input style="width:100%;border:1px solid rgba(255,255,255,.2);background:transparent;padding:12px 14px;color:#fff" type="email" required placeholder="Tu correo electrónico" aria-label="Tu correo electrónico">' +
           '<button class="btn btn--gold btn--sm btn--block" type="submit">Suscribirme</button>' +
           '<small data-demo-msg hidden style="color:var(--gold-soft)"></small>' +
