@@ -970,7 +970,7 @@ body.announce-off .announce { display: none; }
 
 /* --- Barra fija de reserva (aparece al hacer scroll) --- */
 .stickybar {
-  position: fixed; left: 0; right: 0; top: 0; z-index: 120;
+  position: fixed; left: 0; right: 0; top: var(--header-h); z-index: 90;
   background: var(--surface);
   box-shadow: 0 8px 30px -10px rgba(30,22,10,.28);
   border-bottom: 1px solid var(--hairline);
