@@ -243,8 +243,21 @@
 
   /* ---------- Service worker (carga instantánea / offline) ---------- */
   if ("serviceWorker" in navigator && location.protocol.indexOf("http") === 0) {
+    var hadController = !!navigator.serviceWorker.controller;
     window.addEventListener("load", function () {
       navigator.serviceWorker.register("sw.js").catch(function () {});
     });
+    /* si esta pestaña ya estaba bajo un service worker (no es la primera
+       visita) y se instala uno nuevo tras una actualización del sitio,
+       recarga una sola vez para que el arreglo se vea de inmediato en
+       vez de requerir un refresco manual. */
+    if (hadController) {
+      var refreshed = false;
+      navigator.serviceWorker.addEventListener("controllerchange", function () {
+        if (refreshed) return;
+        refreshed = true;
+        location.reload();
+      });
+    }
   }
 })();
