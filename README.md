@@ -60,6 +60,10 @@ manifest.json · sw.js PWA (instalable, caché offline)
 - **Barra rápida de reserva** en la portada (fechas + huéspedes con respuestas
   rápidas de un `<select>`), estática — no se mueve ni aparece/desaparece al
   hacer scroll.
+- **Encuentra tu habitación ideal**: quiz de dos preguntas casi al final de la
+  portada y de `habitaciones.html` — quien llega hasta ahí es porque no se
+  decidió con lo anterior. Recomienda una categoría (con el porqué) y enlaza
+  directo a reservarla.
 - **Motor de reservas** de 5 pasos con **calendario de tarifas indicativas** por día
   (temporada alta/baja y fin de semana), resumen de precio en vivo e impuestos.
 - **Comparador de habitaciones** en `habitaciones.html`.
