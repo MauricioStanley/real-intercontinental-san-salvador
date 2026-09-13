@@ -87,7 +87,7 @@
         '<p style="color:var(--ink-soft)">' + o.pitch + '</p>' +
         '<ul class="offer__perks">' + perks + '</ul>' +
         '<div class="offer__foot"><span class="offer__price">$' + o.from + ' <small>' + o.unit + '</small></span>' +
-        '<a class="btn btn--sm btn--gold" href="reservar.html">Reservar</a></div>' +
+        '<a class="btn btn--sm btn--gold" href="reservar.html?room=' + o.room + '&rate=' + o.rate + '">Reservar</a></div>' +
       '</div>' +
       (i % 2 ? '<div class="offer__media"><img src="' + o.img + '" alt="' + o.name + '" loading="lazy"></div>' : '') +
     '</article>';

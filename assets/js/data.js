@@ -152,6 +152,9 @@ window.IC_DATA = {
     },
   ],
 
+  // cada oferta apunta a la habitación + tarifa del motor de reservas que
+  // mejor la representa, así "Reservar" en una oferta llega con todo
+  // preseleccionado en vez de mandar al usuario a elegir de cero.
   offers: [
     {
       id: "club-rate",
@@ -165,6 +168,7 @@ window.IC_DATA = {
       ],
       from: 289,
       unit: "por noche · impuestos no incluidos",
+      room: "club", rate: "flex",
     },
     {
       id: "bed-breakfast",
@@ -178,6 +182,7 @@ window.IC_DATA = {
       ],
       from: 199,
       unit: "por noche · impuestos no incluidos",
+      room: "superior", rate: "flex",
     },
     {
       id: "leisure",
@@ -192,6 +197,7 @@ window.IC_DATA = {
       ],
       from: 179,
       unit: "por noche · mínimo 2 noches",
+      room: "superior", rate: "flex",
     },
     {
       id: "family",
@@ -205,6 +211,7 @@ window.IC_DATA = {
       ],
       from: 175,
       unit: "por noche · impuestos no incluidos",
+      room: "family", rate: "flex",
     },
   ],
 
