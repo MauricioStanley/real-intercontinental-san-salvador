@@ -57,15 +57,15 @@ manifest.json · sw.js PWA (instalable, caché offline)
   quedar válido y un aviso en rojo ladrillo si hay un error, mientras se escribe.
   Cubre el asistente de reserva, el formulario de eventos, el de contacto y el
   boletín — sin `alert()` nativos.
-- **Barra rápida de reserva** en la portada (fechas + huéspedes con respuestas
-  rápidas de un `<select>`), estática — no se mueve ni aparece/desaparece al
-  hacer scroll.
 - **Encuentra tu habitación ideal**: quiz de dos preguntas casi al final de la
   portada y de `habitaciones.html` — quien llega hasta ahí es porque no se
   decidió con lo anterior. Recomienda una categoría (con el porqué) y enlaza
   directo a reservarla.
 - **Motor de reservas** de 5 pasos con **calendario de tarifas indicativas** por día
   (temporada alta/baja y fin de semana), resumen de precio en vivo e impuestos.
+  Si se llega con una habitación ya elegida (desde el detalle, el comparador o
+  el quiz), el paso 2 la muestra sola en vez de las seis — con un botón
+  "Explorar más habitaciones" para abrir el resto solo si hace falta.
 - **Comparador de habitaciones** en `habitaciones.html`.
 - **Reserva directa**: bloque de ventajas frente a las OTA (mejor precio, sin cargos,
   cancelación flexible, mejora de categoría, bebida de bienvenida, late check-out).

@@ -24,6 +24,10 @@
     rateId: null,
     addons: {},
     guest: {},
+    // si ya llega una habitación elegida (desde habitaciones.html, el detalle
+    // de una habitación, o el quiz), el paso 2 la muestra sola en vez de
+    // obligar a desplazarse por las seis; "Explorar más habitaciones" abre el resto.
+    showAllRooms: !params.get("room"),
   };
   // si llega una habitación preseleccionada (p. ej. desde "Encuentra tu
   // habitación ideal"), le asigna de una vez la tarifa flexible por defecto
@@ -179,6 +183,27 @@
   }
 
   /* ---- Paso 2: elegir habitación + tarifa ---- */
+  function roomCardHtml(r) {
+    var rates = D.rateTypes.map(function (rt) {
+      var price = Math.round(r.from * rt.factor);
+      var checked = (state.roomId === r.id && state.rateId === rt.id) ? "checked" : "";
+      return '<label class="rate-option">' +
+        '<span><input type="radio" name="rate" value="' + r.id + "|" + rt.id + '" ' + checked + '> <b>' + rt.name + '</b><br><small>' + rt.note + '</small></span>' +
+        '<span class="price"><b>' + money(price) + '</b><br><small>por noche</small></span>' +
+      '</label>';
+    }).join("");
+    return '<article class="rate-room">' +
+      '<img src="' + r.img + '" alt="' + r.name + '" loading="lazy">' +
+      '<div class="rate-room__body">' +
+        '<h3>' + r.name + '</h3>' +
+        '<div class="card__meta" style="margin:8px 0 4px">' +
+          '<span>' + r.size + '</span><span>' + r.bed + '</span><span>' + r.occupancy + '</span>' +
+        '</div>' +
+        '<p style="color:var(--ink-soft);font-size:.92rem">' + r.short + '</p>' +
+        rates +
+      '</div>' +
+    '</article>';
+  }
   function panel2() {
     var n = nights();
     var cards = D.rooms.filter(function (r) {
@@ -186,30 +211,20 @@
       return capacity(r) >= guestCount();
     });
     if (!cards.length) cards = D.rooms;
-    var html = cards.map(function (r) {
-      var rates = D.rateTypes.map(function (rt) {
-        var price = Math.round(r.from * rt.factor);
-        var checked = (state.roomId === r.id && state.rateId === rt.id) ? "checked" : "";
-        return '<label class="rate-option">' +
-          '<span><input type="radio" name="rate" value="' + r.id + "|" + rt.id + '" ' + checked + '> <b>' + rt.name + '</b><br><small>' + rt.note + '</small></span>' +
-          '<span class="price"><b>' + money(price) + '</b><br><small>por noche</small></span>' +
-        '</label>';
-      }).join("");
-      return '<article class="rate-room">' +
-        '<img src="' + r.img + '" alt="' + r.name + '" loading="lazy">' +
-        '<div class="rate-room__body">' +
-          '<h3>' + r.name + '</h3>' +
-          '<div class="card__meta" style="margin:8px 0 4px">' +
-            '<span>' + r.size + '</span><span>' + r.bed + '</span><span>' + r.occupancy + '</span>' +
-          '</div>' +
-          '<p style="color:var(--ink-soft);font-size:.92rem">' + r.short + '</p>' +
-          rates +
-        '</div>' +
-      '</article>';
-    }).join("");
-    return '<div class="wizard-panel active"><h2 class="h-md">Elige tu habitación</h2>' +
+
+    var preselected = state.roomId ? D.rooms.filter(function (r) { return r.id === state.roomId; })[0] : null;
+    var showAll = state.showAllRooms || !preselected;
+    var list = showAll ? cards : [preselected];
+    var html = list.map(roomCardHtml).join("");
+
+    var exploreBtn = !showAll ?
+      '<button type="button" class="btn btn--ghost btn--block" data-explore-rooms style="margin-top:20px">Explorar más habitaciones</button>' : "";
+
+    var title = showAll ? "Elige tu habitación" : "Tu habitación";
+
+    return '<div class="wizard-panel active"><h2 class="h-md">' + title + '</h2>' +
       '<p class="form-note" style="margin:10px 0 24px">' + dateHuman(state.checkin) + ' – ' + dateHuman(state.checkout) + ' · ' + n + ' noche(s) · ' + guestCount() + ' huésped(es)</p>' +
-      html +
+      html + exploreBtn +
       '<div class="wizard-alert" id="wizard-alert"><div>' + window.ICValidate.ICON_ERR + '<span>' + window.ICValidate.t("roomRate") + '</span></div></div>' +
       '<div class="wizard-nav"><button class="btn btn--ghost" data-back>Volver</button><button class="btn btn--gold" data-next>Continuar</button></div>' +
       '</div>';
@@ -352,6 +367,11 @@
       });
     }
     if (state.step === 2) {
+      var explore = $("[data-explore-rooms]");
+      if (explore) explore.addEventListener("click", function () {
+        state.showAllRooms = true;
+        render();
+      });
       $$('input[name="rate"]').forEach(function (r) {
         r.addEventListener("change", function () {
           var v = r.value.split("|");

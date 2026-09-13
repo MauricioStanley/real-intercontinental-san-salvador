@@ -99,32 +99,6 @@
     }
   }
 
-  /* ---------- Barra rápida de reserva (portada) ---------- */
-  var quickbook = $("#quickbook-form");
-  if (quickbook) {
-    var qi = $("#qb-in"), qo = $("#qb-out");
-    var qfmt = function (d) { return d.toISOString().slice(0, 10); };
-    var qToday = new Date();
-    var qTmr = new Date(); qTmr.setDate(qTmr.getDate() + 1);
-    var qDayAfter = new Date(); qDayAfter.setDate(qDayAfter.getDate() + 2);
-    qi.value = qfmt(qTmr); qi.min = qfmt(qToday);
-    qo.value = qfmt(qDayAfter); qo.min = qfmt(qDayAfter);
-    qi.addEventListener("change", function () {
-      var next = new Date(qi.value); next.setDate(next.getDate() + 1);
-      qo.min = qfmt(next);
-      if (new Date(qo.value) <= new Date(qi.value)) qo.value = qfmt(next);
-    });
-    quickbook.addEventListener("submit", function (e) {
-      e.preventDefault();
-      var g = $("#qb-g").value.split("|");
-      var params = new URLSearchParams({
-        checkin: qi.value, checkout: qo.value,
-        adults: g[0], children: g[1], rooms: g[2],
-      });
-      window.location.href = "reservar.html?" + params.toString();
-    });
-  }
-
   /* ---------- Lightbox de galería ---------- */
   var lbTriggers = $$("[data-lightbox]");
   if (lbTriggers.length) {

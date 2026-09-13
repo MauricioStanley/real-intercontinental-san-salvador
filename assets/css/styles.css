@@ -918,30 +918,6 @@ body.announce-off .announce { display: none; }
   .wa-fab::after { display: none; }
 }
 
-/* --- Barra rápida de reserva (portada; una sola, estática — no se
-   mueve ni aparece/desaparece con el scroll) --- */
-.quickbook-wrap { position: relative; z-index: 40; margin-top: clamp(-100px, -9vh, -66px); }
-.quickbook { background: var(--surface); border-radius: var(--r-lg); box-shadow: var(--shadow-3); }
-.quickbook__in { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; padding: 18px 28px; }
-.quickbook__brand {
-  font-family: var(--font-display); font-weight: 600; font-size: 1rem;
-  color: var(--ink); white-space: nowrap; letter-spacing: .02em;
-}
-.quickbook form { display: flex; align-items: center; gap: 16px; flex: 1; flex-wrap: wrap; }
-.quickbook label { font-size: .66rem; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); font-weight: 600; display: block; margin-bottom: 4px; }
-.quickbook .fld { display: flex; flex-direction: column; gap: 2px; }
-.quickbook input, .quickbook select {
-  border: 1px solid var(--hairline); border-radius: var(--r-sm);
-  padding: 9px 11px; font-size: .92rem; background: var(--surface); color: var(--ink);
-}
-.quickbook .btn { padding: .85em 1.8em; white-space: nowrap; }
-@media (max-width: 900px) { .quickbook__brand { display: none; } }
-@media (max-width: 700px) {
-  .quickbook__in { flex-direction: column; align-items: stretch; padding: 20px; }
-  .quickbook form { flex-direction: column; align-items: stretch; gap: 12px; }
-  .quickbook .fld, .quickbook input, .quickbook select, .quickbook .btn { width: 100%; }
-}
-
 /* --- Ventajas de reserva directa --- */
 .perks-grid {
   display: grid; grid-template-columns: repeat(3, 1fr);
