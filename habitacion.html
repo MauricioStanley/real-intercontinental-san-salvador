@@ -79,11 +79,14 @@
         '<h3 class="h-sm" style="margin-bottom:10px">Incluye</h3>' +
         '<ul class="stack" style="gap:6px;color:var(--ink-2);margin-bottom:28px">' + amen + '</ul>' +
         '<div style="display:flex;gap:14px;flex-wrap:wrap">' +
-          '<a class="btn btn--gold" href="reservar.html">Reservar esta habitación</a>' +
+          '<a class="btn btn--gold" href="reservar.html?room=' + r.id + '">Reservar esta habitación</a>' +
           '<a class="btn btn--ghost" href="habitaciones.html">Ver otras habitaciones</a>' +
         '</div>' +
       '</div>' +
     '</div>';
+
+  var mb = document.querySelector(".mobile-book a");
+  if (mb) mb.href = "reservar.html?room=" + r.id;
 })();
 </script>
 <script src="assets/js/validate.js"></script>

@@ -985,27 +985,6 @@ body.announce-off .announce { display: none; }
 .compare .yes { color: var(--emerald); font-weight: 700; }
 .compare .no { color: var(--hairline); }
 
-/* --- Calendario de tarifas (mini) --- */
-.ratecal { border: 1px solid var(--hairline); border-radius: var(--r); padding: 16px; background: var(--surface-2); max-width: 340px; }
-.ratecal__head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
-.ratecal__head b { font-family: var(--font-display); font-size: 1.05rem; font-weight: 560; }
-.ratecal__nav { width: 30px; height: 30px; border: 1px solid var(--hairline); border-radius: 50%; display: grid; place-items: center; color: var(--ink); }
-.ratecal__nav:hover { border-color: var(--emerald); color: var(--emerald); }
-.ratecal__grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 3px; }
-.ratecal__dow { font-size: .58rem; text-transform: uppercase; letter-spacing: .03em; color: var(--ink-3); text-align: center; padding: 4px 0; font-weight: 700; }
-.ratecal__day {
-  aspect-ratio: 1; border-radius: var(--r-sm); border: 1px solid transparent;
-  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px;
-  font-size: .82rem; color: var(--ink); background: var(--surface);
-  transition: background .2s, border-color .2s;
-}
-.ratecal__day:hover:not(:disabled) { border-color: var(--emerald); }
-.ratecal__day:disabled { color: var(--hairline); background: transparent; }
-.ratecal__day.sel { background: var(--emerald); color: #fff; }
-.ratecal__day small { font-size: .56rem; color: var(--gold-dark); font-weight: 700; }
-.ratecal__day.sel small { color: var(--gold-on-dark); }
-.ratecal__legend { display: flex; gap: 14px; margin-top: 10px; font-size: .66rem; color: var(--ink-3); }
-
 /* --- Experiencias --- */
 .exp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(18px, 3vw, 30px); }
 @media (max-width: 900px) { .exp-grid { grid-template-columns: repeat(2, 1fr); } }

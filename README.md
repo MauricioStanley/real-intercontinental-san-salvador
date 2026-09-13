@@ -61,8 +61,7 @@ manifest.json · sw.js PWA (instalable, caché offline)
   portada y de `habitaciones.html` — quien llega hasta ahí es porque no se
   decidió con lo anterior. Recomienda una categoría (con el porqué) y enlaza
   directo a reservarla.
-- **Motor de reservas** de 5 pasos con **calendario de tarifas indicativas** por día
-  (temporada alta/baja y fin de semana), resumen de precio en vivo e impuestos.
+- **Motor de reservas** de 5 pasos, con resumen de precio en vivo e impuestos.
   Si se llega con una habitación ya elegida (desde el detalle, el comparador o
   el quiz), el paso 2 la muestra sola en vez de las seis — con un botón
   "Explorar más habitaciones" para abrir el resto solo si hace falta.
