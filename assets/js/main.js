@@ -25,12 +25,15 @@
     burger.addEventListener("click", function () {
       var open = document.body.classList.toggle("nav-open");
       burger.setAttribute("aria-expanded", open ? "true" : "false");
+      burger.setAttribute("aria-label", open ? "Cerrar menú" : "Abrir menú");
       document.body.style.overflow = open ? "hidden" : "";
     });
     $$(".nav a").forEach(function (a) {
       a.addEventListener("click", function () {
         document.body.classList.remove("nav-open");
         document.body.style.overflow = "";
+        burger.setAttribute("aria-expanded", "false");
+        burger.setAttribute("aria-label", "Abrir menú");
       });
     });
   }
@@ -174,6 +177,10 @@
         msg.textContent = "Gracias. Hemos recibido tu solicitud; un ejecutivo del hotel te contactará dentro de las próximas 24 horas.";
       }
       form.reset();
+      // sin esto, los campos quedan vacíos pero con el check verde de
+      // "válido" pegado, porque form.reset() solo limpia valores, no
+      // las clases is-valid/is-invalid que pintó validate.js.
+      if (window.ICValidate) window.ICValidate.refresh(form);
     });
   });
 
