@@ -181,7 +181,12 @@
   if ("serviceWorker" in navigator && location.protocol.indexOf("http") === 0) {
     var hadController = !!navigator.serviceWorker.controller;
     window.addEventListener("load", function () {
-      navigator.serviceWorker.register("sw.js").catch(function () {});
+      // updateViaCache:"none" evita que el navegador (o el CDN de GitHub
+      // Pages) sirva una copia en caché del propio sw.js — sin esto, una
+      // actualización del sitio puede tardar minutos en detectarse.
+      navigator.serviceWorker.register("sw.js", { updateViaCache: "none" }).then(function (reg) {
+        if (reg) reg.update();
+      }).catch(function () {});
     });
     /* si esta pestaña ya estaba bajo un service worker (no es la primera
        visita) y se instala uno nuevo tras una actualización del sitio,

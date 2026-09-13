@@ -316,9 +316,12 @@
         r.addEventListener("change", function () {
           var v = r.value.split("|");
           state.roomId = v[0]; state.rateId = v[1];
-          $("#wizard-summary").innerHTML = summary();
+          // al elegir, colapsa a solo esa habitación y libera espacio —
+          // "Explorar más habitaciones" la vuelve a desplegar si hace falta.
+          state.showAllRooms = false;
           var box = $("#wizard-alert");
           if (box) box.classList.remove("show");
+          render();
         });
       });
     }
